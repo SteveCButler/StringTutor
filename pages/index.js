@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import styles from '../styles.module.css';
 import hero from '../assets/heroSmaller.jpg';
+import StudentSignUp from '../components/forms/StudentSignup';
 // import { useAuth } from '../utils/context/authContext';
 
 function Home() {
@@ -34,6 +35,7 @@ function Home() {
         <p>At String Tutors our focus is on the education and preservation of American Folk music.  Offering instruction in guitar, mandolin, banjo, fiddle, and banjo.</p>
         <p> Looking to learn:  Take a few moments to check out our instructor profiles to see who might be a good fit for you., then click Sign Up to get started learning.    Interested in teaching: use the Instructor Signup located on top of the Instructor Profiles page.</p>
       </div>
+      <StudentSignUp />
 
     </div>
   );
