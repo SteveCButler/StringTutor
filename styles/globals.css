@@ -20,6 +20,11 @@ a {
 .nav-bg{
   background-color: #0E3B43;
 }
+
+.modal-header-bg{
+  background-color: #357266;
+}
+
 .bgWrap {
   left: 0;
   position: fixed;
