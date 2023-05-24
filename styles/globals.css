@@ -33,3 +33,36 @@ a {
   overflow: hidden;
   z-index: -1;
 }
+
+
+.pillButtonLeft{
+  border-radius: 10px 0 0 10px;
+  background-color: #0E3B43;
+  color: #A3BBAD;
+  border: 0;
+}
+
+.pillButtonLeft:hover,
+.pillButtonLeft:active {
+  background-color: #A3BBAD;
+  color: #0E3B43;
+  border-right: 1px solid #0E3B43;
+}
+
+.pillButtonRight{
+  border-radius: 0 10px 10px 0;
+  background-color: #A3BBAD;
+  color: #0E3B43;
+  border: 0;
+}
+
+.pillButtonRight:hover,
+.pillButtonRight:active {
+ background-color: #0E3B43;
+  color: #A3BBAD;
+  border-left: 1px solid #A3BBAD;
+}
+
+.dark-green{
+  color: #0E3B43;
+}
