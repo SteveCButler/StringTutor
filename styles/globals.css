@@ -81,3 +81,9 @@ a {
   width: 95%;
 }
  
+.round-top-right{
+  border-top-right-radius: 10px;
+}
+.round-top-left{
+  border-top-left-radius: 10px;
+}
