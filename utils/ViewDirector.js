@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useAuth } from './context/authContext';
 import Loading from '../components/Loading';
@@ -6,6 +7,9 @@ import NavBar from '../components/NavBarAuth';
 import NavBarPublic from '../components/NavBarPublic';
 
 const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) => {
+  const [show, setShow] = useState(false);
+  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
   const { user, userLoading } = useAuth();
 
   // if user state is null, then show loader
@@ -17,9 +21,9 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
   if (user) {
     return (
       <>
-        <NavBar /> {/* NavBar only visible if user is logged in and is in every view */}
+        <NavBar handleShow={handleShow} /> {/* NavBar only visible if user is logged in and is in every view */}
         {/* <div className="container"> */}
-        <Component {...pageProps} />
+        <Component {...pageProps} show={show} handleShow={handleShow} handleClose={handleClose} />
         {/* </div> */}
       </>
     );
@@ -27,9 +31,9 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
 
   return (
     <>
-      <NavBarPublic /> {/* NavBar only visible if user is logged in and is in every view */}
+      <NavBarPublic handleShow={handleShow} /> {/* NavBar only visible if user is logged in and is in every view */}
       {/* <div className="container"> */}
-      <Component {...pageProps} />
+      <Component {...pageProps} show={show} handleShow={handleShow} handleClose={handleClose} />
       {/* </div> */}
     </>
     // <Signin />;
