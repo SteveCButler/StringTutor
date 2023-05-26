@@ -1,14 +1,16 @@
+import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
-function InstructorProfileCard() {
+function InstructorProfileCard({ user }) {
   return (
     <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
+      <Card.Img className="light-green-bg p-2" variant="top" src={user.image} alt="Card image" />
       <Card.Body>
-        <Card.Title>Instructor Name</Card.Title>
+        <Card.Title>{user.name}</Card.Title>
         <Card.Text>
-          Play mandolin for 15 years.
+          {user.instrument}
+          {user.about}
         </Card.Text>
         <Button variant="secondary">Learn more...</Button>
       </Card.Body>
@@ -17,3 +19,9 @@ function InstructorProfileCard() {
 }
 
 export default InstructorProfileCard;
+
+InstructorProfileCard.propTypes = {
+  user: PropTypes.shape(
+
+  ).isRequired,
+};
