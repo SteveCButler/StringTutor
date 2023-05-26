@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import getUsers from '../api/remoteData';
+import { getUsers } from '../api/remoteData';
 import InstructorProfileCard from '../components/InstructorProfileCard';
 
 const InstructorProfiles = () => {

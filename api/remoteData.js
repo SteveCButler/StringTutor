@@ -16,4 +16,21 @@ const getUsers = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-export default getUsers;
+const getInstructor = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/users/${firebaseKey}.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      resolve(data);
+    })
+    .catch(reject);
+});
+
+export {
+  getUsers,
+  getInstructor,
+};
