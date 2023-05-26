@@ -1,19 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
-export default function StudentSignUp() {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
+export default function StudentSignUp({ show, handleClose }) {
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
-      </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header className="modal-header-bg" closeButton>
@@ -67,7 +60,7 @@ export default function StudentSignUp() {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button className="border-0  fs-5 text-white" onClick={handleClose}>
             Submit
           </Button>
         </Modal.Footer>
@@ -75,3 +68,8 @@ export default function StudentSignUp() {
     </>
   );
 }
+
+StudentSignUp.propTypes = {
+  show: PropTypes.bool.isRequired,
+  handleClose: PropTypes.func.isRequired,
+};

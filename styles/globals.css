@@ -66,3 +66,15 @@ a {
 .dark-green{
   color: #0E3B43;
 }
+
+.welcome-bg{
+  background: url('../assets/heroCropped.jpg') center center no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 110px;
+  left: 40px;
+  z-index: -1;
+  height: 85%;
+  width: 95%;
+}
+ 
