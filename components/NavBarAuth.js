@@ -22,7 +22,7 @@ export default function NavBarAuth({ handleShow }) {
           <Link passHref href="/">
             <Nav.Link>Home</Nav.Link>
           </Link>
-          <Link passHref href="/">
+          <Link passHref href="/instructorProfiles">
             <Nav.Link>Instructors</Nav.Link>
           </Link>
           <Link passHref href="/resources">
