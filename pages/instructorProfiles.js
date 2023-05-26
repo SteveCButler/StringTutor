@@ -16,8 +16,8 @@ const InstructorProfiles = () => {
 
   return (
     <>
-      <h1 className="text-white m-3">InstructorProfiles</h1>
-      <div className="d-flex flex-wrap gap-3 mx-3">
+      <h1 className="text-white ms-5 my-3">InstructorProfiles</h1>
+      <div className="d-flex flex-wrap gap-4 w-75 mx-auto">
         {users.map((user) => user.isInstructor && <InstructorProfileCard key={uuidv4()} user={user} />)}
       </div>
 

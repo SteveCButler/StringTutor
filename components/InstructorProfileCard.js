@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 
 function InstructorProfileCard({ user }) {
   return (
-    <Card style={{ width: '18rem' }}>
+    <Card style={{ width: '15rem' }}>
       <Card.Img className="light-green-bg p-2" variant="top" src={user.image} alt="Card image" />
       <Card.Body>
         <Card.Title>{user.name}</Card.Title>
