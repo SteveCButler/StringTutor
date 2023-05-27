@@ -9,7 +9,7 @@ const InstructorFullProfile = () => {
 
   useEffect(() => {
     getInstructor(firebaseKey).then(setInstructor);
-  }, []);
+  }, [firebaseKey]);
 
   return (
     <div className=" dark-green p-3 rounded-2 bg-white w-75 mt-4 mx-auto">
