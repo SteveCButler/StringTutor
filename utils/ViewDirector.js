@@ -8,8 +8,8 @@ import NavBarPublic from '../components/NavBarPublic';
 
 const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) => {
   const [show, setShow] = useState(false);
-  const handleShow = () => setShow(true);
-  const handleClose = () => setShow(false);
+  const handleShowStudentForm = () => setShow(true);
+  const handleCloseStudentForm = () => setShow(false);
   const { user, userLoading } = useAuth();
 
   // if user state is null, then show loader
@@ -21,9 +21,9 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
   if (user) {
     return (
       <>
-        <NavBar handleShow={handleShow} /> {/* NavBar only visible if user is logged in and is in every view */}
+        <NavBar handleShow={handleShowStudentForm} /> {/* NavBar only visible if user is logged in and is in every view */}
         {/* <div className="container"> */}
-        <Component {...pageProps} show={show} handleShow={handleShow} handleClose={handleClose} />
+        <Component {...pageProps} show={show} handleShow={handleShowStudentForm} handleClose={handleCloseStudentForm} />
         {/* </div> */}
       </>
     );
@@ -31,9 +31,9 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
 
   return (
     <>
-      <NavBarPublic handleShow={handleShow} /> {/* NavBar only visible if user is logged in and is in every view */}
+      <NavBarPublic handleShow={handleShowStudentForm} /> {/* NavBar only visible if user is logged in and is in every view */}
       {/* <div className="container"> */}
-      <Component {...pageProps} show={show} handleShow={handleShow} handleClose={handleClose} />
+      <Component {...pageProps} show={show} handleShow={handleShowStudentForm} handleClose={handleCloseStudentForm} />
       {/* </div> */}
     </>
     // <Signin />;

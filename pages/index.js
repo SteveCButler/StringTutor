@@ -25,12 +25,11 @@ function Home({ show, handleShow, handleClose }) {
             fontSize: '1rem',
             lineHeight: '2rem',
             textAlign: 'left',
-            // textShadow: '1px 1px 1px #3c5c5e',
-            backdropFilter: 'brightness(75%)',
+            backdropFilter: 'brightness(65%)',
           }}
         >
           <div>
-            <Image src={logo} width="800" height="250" />
+            <Image src={logo} width="600" height="175" />
           </div>
 
           <h1 className="mb-3 display-5">Welcome to String Tutors</h1>
@@ -39,14 +38,16 @@ function Home({ show, handleShow, handleClose }) {
           }}
           >
             <p>At String Tutors our focus is on the education and preservation of American Folk music.  Offering instruction in guitar, mandolin, banjo, fiddle, and banjo.</p>
-            <p> Looking to learn:  Take a few moments to check out our instructor profiles to see who might be a good fit for you., then click Sign Up to get started learning.    Interested in teaching: use the Instructor Signup located on top of the Instructor Profiles page.</p>
+            <p> Check out our instructor profiles to see who might be a good fit for you, then click Sign Up to get started learning.</p>
             <div className="pt-3">
               <WelcomePillButton handleShow={handleShow} />
             </div>
+            <p style={{ fontSize: '12px' }}>Instructor Signup located on top of the Instructor Profiles page.</p>
             <div className="text-white d-flex pt-4">
               <p className="pt-3 ps-4 fs-6">Already signed up?</p>
               <Button className="fs-5 bg-transparent border-0 dark-green fw-bold" onClick={signIn}>Sign In</Button>
             </div>
+
           </div>
 
         </div>
