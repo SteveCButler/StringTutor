@@ -102,3 +102,12 @@ a {
 .round-top-left{
   border-top-left-radius: 10px;
 }
+li {
+  list-style: none;
+}
+li > a{
+  color: white;
+}
+li > a:hover{
+  color: #0E3B43;
+}
