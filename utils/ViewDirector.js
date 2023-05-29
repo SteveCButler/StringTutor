@@ -21,17 +21,17 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
   if (user) {
     return (
       <>
-        <NavBar handleShow={handleShow} /> {/* NavBar only visible if user is logged in and is in every view */}
+        <NavBar handleShow={handleShow} />
         {/* <div className="container"> */}
         <Component {...pageProps} show={show} handleShow={handleShow} handleClose={handleClose} />
         {/* </div> */}
       </>
     );
   }
-
+  // what the user should see if they are not logged in
   return (
     <>
-      <NavBarPublic handleShow={handleShow} /> {/* NavBar only visible if user is logged in and is in every view */}
+      <NavBarPublic handleShow={handleShow} />
       {/* <div className="container"> */}
       <Component {...pageProps} show={show} handleShow={handleShow} handleClose={handleClose} />
       {/* </div> */}

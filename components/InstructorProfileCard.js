@@ -21,11 +21,11 @@ function InstructorProfileCard({ user }) {
     <Card style={{ width: '15rem' }}>
       <Card.Img className="light-green-bg p-2" variant="top" src={user.image} alt="Card image" />
       <Card.Body>
-        <Card.Title>{user.name}</Card.Title>
-        <Card.Text>
-          <p className="fs-5">{user.instrument}</p>
+        <div>
+          <p className="fs-6">{user.name}</p>
+          <p className="fs-3">{user.instrument}</p>
           <p>{limitedAbout}...</p>
-        </Card.Text>
+        </div>
         <Link href={`/instructor/${user.firebaseKey}`} passHref>
           <Button variant="secondary">Learn more...</Button>
         </Link>

@@ -1,22 +1,23 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Link from 'next/link';
 import Button from 'react-bootstrap/Button';
 
-const WelcomePillButton = ({ handleShow }) => (
+const WelcomePillButton = () => (
   <>
     <Link passHref href="/instructorProfiles">
-      <Button className="pillButtonLeft pillButton">Instructors Profiles</Button>
+      <Button
+        className="pillButtonLeft pillButton"
+      >Instructors Profiles
+      </Button>
     </Link>
-    <Link passHref href="/">
-      <Button className="pillButtonRight pillButton" onClick={handleShow}>Student Sign Up</Button>
+    <Link passHref href="/studentSignupPage">
+      <Button
+        className="pillButtonRight pillButton"
+      >Student Sign Up
+      </Button>
     </Link>
   </>
 
 );
-
-WelcomePillButton.propTypes = {
-  handleShow: PropTypes.func.isRequired,
-};
 
 export default WelcomePillButton;

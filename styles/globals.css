@@ -66,8 +66,23 @@ a {
 .dark-green{
   color: #0E3B43;
 }
+.dark-green-bg{
+  background-color: #0E3B43;
+}
+.light-green-text{
+  color:#A3BBAD;
+}
 .light-green-bg {
   background-color: #A3BBAD;
+}
+.dark-button{
+  color:#A3BBAD;
+  background-color: #0E3B43;
+  border: 0;
+}
+.dark-button:hover{
+  color: #0E3B43;
+  background-color:#A3BBAD;
 }
 
 .welcome-bg{
@@ -86,4 +101,13 @@ a {
 }
 .round-top-left{
   border-top-left-radius: 10px;
+}
+li {
+  list-style: none;
+}
+li > a{
+  color: white;
+}
+li > a:hover{
+  color: #0E3B43;
 }

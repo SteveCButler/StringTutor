@@ -41,5 +41,8 @@ export default function NavBarAuth({ handleShow }) {
 }
 
 NavBarAuth.propTypes = {
-  handleShow: PropTypes.func.isRequired,
+  handleShow: PropTypes.func,
+};
+NavBarAuth.defaultProps = {
+  handleShow: () => {},
 };

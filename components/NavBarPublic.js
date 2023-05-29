@@ -1,12 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
+import PropTypes from 'prop-types';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Navbar, Nav } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 import { signIn } from '../utils/auth';
 import logo from '../assets/StringTutors.png';
 
-export default function NavBarPublic() {
+export default function NavBarPublic({ handleShowStudentForm }) {
   return (
     <Navbar collapseOnSelect expand="lg" className="nav-bg ps-5" style={{ height: '5em' }} variant="dark">
       <Link passHref href="/">
@@ -21,15 +23,13 @@ export default function NavBarPublic() {
           <Link passHref href="/">
             <Nav.Link>Home</Nav.Link>
           </Link>
-          <Link passHref href="/">
+          <Link passHref href="/instructorProfiles">
             <Nav.Link>Instructors</Nav.Link>
           </Link>
           <Link passHref href="/resources">
             <Nav.Link>Resources</Nav.Link>
           </Link>
-          <Link passHref href="/">
-            <Nav.Link>Join</Nav.Link>
-          </Link>
+          <Button className="border-0 bg-transparent text-white-50" onClick={handleShowStudentForm}>Join</Button>
           <Link passHref href="/">
             <Nav.Link className="me-5" onClick={signIn}>Sign In</Nav.Link>
           </Link>
@@ -39,3 +39,7 @@ export default function NavBarPublic() {
     </Navbar>
   );
 }
+
+NavBarPublic.propTypes = {
+  handleShowStudentForm: PropTypes.func.isRequired,
+};
