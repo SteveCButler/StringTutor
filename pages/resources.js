@@ -1,18 +1,11 @@
 import React from 'react';
 import Image from 'next/image';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import muddy from '../assets/muddyWater_poster.jpg';
 import woody from '../assets/woodieGuthrie_poster.jpg';
 import folkFest from '../assets/folkFestival_poster.jpg';
 import dylan from '../assets/dylan_poster.jpg';
 import monroe from '../assets/billMonroe_WSM_add.jpg';
-import docMerle from '../assets/doc_and_merle_watson.jpg';
-import cotten from '../assets/elizabethCotten.jpg';
 import mitchell from '../assets/joniMitchell.jpg';
-import baez from '../assets/joanBaez.jpg';
-import jHurt from '../assets/mississippiJohnHurt.jpg';
 
 export default function Resources() {
   return (
@@ -44,51 +37,14 @@ export default function Resources() {
 
           </ul>
         </div>
-        <Container className="mt-3">
-          <Row>
-            <Col><Image src={muddy} width="200" height="200" /></Col>
-            <Col />
-            <Col><Image src={cotten} width="200" height="200" /></Col>
-            <Col />
-            <Col><Image src={folkFest} width="200" height="200" /></Col>
-            <Col />
-          </Row>
-          <Row>
-            <Col />
-            <Col><Image src={woody} width="200" height="200" /></Col>
-            <Col />
-            <Col><Image src={jHurt} width="200" height="200" /> </Col>
-            <Col />
-            <Col />
-          </Row>
-          <Row>
-            <Col><Image src={baez} width="200" height="200" /></Col>
-            <Col />
-            <Col><Image src={dylan} width="200" height="200" /></Col>
-            <Col />
-            <Col><Image src={mitchell} width="200" height="200" /></Col>
-            <Col />
-          </Row>
-          <Row>
-            <Col />
-            <Col><Image src={monroe} width="200" height="200" /></Col>
-            <Col />
-            <Col><Image src={docMerle} width="200" height="200" /></Col>
-            <Col />
-            <Col />
-          </Row>
-        </Container>
-        {/* <div className="mt-3 d-flex flex-wrap gap-4">
-          <Image src={muddy} width="200" height="200" />
-          <Image src={dylan} width="200" height="200" />
-          <Image src={folkFest} width="200" height="200" />
-          <Image src={woody} width="200" height="200" />
-          <Image src={monroe} width="200" height="200" />
-          <Image src={docMerle} width="200" height="200" />
-          <Image src={cotten} width="200" height="200" />
-          <Image src={mitchell} width="200" height="200" />
-          <Image src={baez} width="200" height="200" />
-        </div> */}
+        <div className="mt-3 d-flex flex-wrap gap-4">
+          <Image src={muddy} width="350" height="350" />
+          <Image src={folkFest} width="350" height="350" />
+          <Image src={woody} width="350" height="350" />
+          <Image src={dylan} width="350" height="350" />
+          <Image src={mitchell} width="350" height="350" />
+          <Image src={monroe} width="350" height="350" />
+        </div>
       </div>
     </>
   );

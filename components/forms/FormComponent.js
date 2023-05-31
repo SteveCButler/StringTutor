@@ -52,13 +52,10 @@ const FormComponent = ({ instructor, obj }) => {
       updateUser(formInput).then(() => router.push(`/student/${obj.firebaseKey}`));
     } else {
       const payload = { ...formInput, uid: user.uid, isInstructor: false };
-      createUser(payload).then((data) => {
-        const [, fbkPlus] = data.url.split('users/');
-        const [firebaseKey] = fbkPlus.split('.');
-        router.push(`/student/${firebaseKey}`);
-      });
+      createUser(payload).then(router.push('/profile'));
     }
   };
+
   return (
     <Form className="w-50 mx-auto text-white" onSubmit={handleSubmit}>
       <div className="text-center my-4 text-white">
