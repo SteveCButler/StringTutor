@@ -18,7 +18,7 @@ const initialState = {
 };
 
 export default function CreateLesson() {
-  const [text, setText] = useState('');
+  const [textBody, setTextBody] = useState('');
   const [formInput, setFormInput] = useState(initialState);
   const router = useRouter();
   const editorRef = useRef();
@@ -43,9 +43,10 @@ export default function CreateLesson() {
 
   const handleSubmit = useCallback((e) => {
     e.preventDefault();
-    const payload = { ...formInput, content: text };
+    const payload = { ...formInput, content: textBody };
     createLesson(payload).then(() => router.push('/profile'));
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formInput, textBody]);
 
   return (
     <>
@@ -77,7 +78,7 @@ export default function CreateLesson() {
               onChange={(event, editor) => {
                 const data = editor.getData();
                 // console.warn({ event, editor, data });
-                setText(data);
+                setTextBody(data);
               }}
             />
           )
@@ -90,7 +91,7 @@ export default function CreateLesson() {
       </div>
       <div>
         <h1>Content</h1>
-        <p>{JSON.stringify(text)}</p>
+        <p>{JSON.stringify(textBody)}</p>
       </div>
     </>
   );
