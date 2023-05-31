@@ -30,6 +30,20 @@ const getInstructor = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getUserByUID = (uid) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/users.json?orderBy="uuid"&equalTo="${uid}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      resolve(data);
+    })
+    .catch(reject);
+});
+
 const getStudent = (firebaseKey) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/users/${firebaseKey}.json`, {
     method: 'GET',
@@ -94,6 +108,20 @@ const deleteUser = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getLesson = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/lessons/${firebaseKey}.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      resolve(data);
+    })
+    .catch(reject);
+});
+
 export {
   getUsers,
   getInstructor,
@@ -101,4 +129,6 @@ export {
   createUser,
   updateUser,
   deleteUser,
+  getLesson,
+  getUserByUID,
 };

@@ -26,10 +26,12 @@ function InstructorProfileCard({ user }) {
           <p className="fs-3">{user.instrument}</p>
           <p>{limitedAbout}...</p>
         </div>
-        <Link href={`/instructor/${user.firebaseKey}`} passHref>
-          <Button variant="secondary">Learn more...</Button>
-        </Link>
       </Card.Body>
+      <Card.Footer>
+        <Link href={`/instructor/${user.firebaseKey}`} passHref>
+          <Button className="light-button btn-sm">Learn more...</Button>
+        </Link>
+      </Card.Footer>
     </Card>
   );
 }
