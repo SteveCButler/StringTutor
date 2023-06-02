@@ -65,6 +65,7 @@ const FormComponent = ({ instructor, obj }) => {
       updateUser(formInput).then(() => router.push('/profile'));
     } else {
       const payload = { ...formInput, uid: user.uid, isInstructor: false };
+      console.warn('PAYLOAD: ', payload);
       createUser(payload).then(router.push('/profile'));
     }
   };
@@ -124,21 +125,21 @@ const FormComponent = ({ instructor, obj }) => {
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Instructor</Form.Label>
           <Form.Select
-            aria-label="Author"
-            name="author_id"
+            aria-label="Instructor"
+            name="instructor"
             onChange={handleChange}
             className="mb-3"
-            value={formInput.author_id}
+            value={formInput.instructor}
             required
           >
-            <option value="">Select an Author</option>
+            <option value="">Select an Instructor</option>
             {
               allInstructors.map((singleInstructor) => (
                 <option
                   key={singleInstructor.firebaseKey}
                   value={singleInstructor.firebaseKey}
                 >
-                  {singleInstructor.name}
+                  {`${singleInstructor.name} - ${singleInstructor.instrument}`}
                 </option>
               ))
             }

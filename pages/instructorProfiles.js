@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Button from 'react-bootstrap/Button';
-import { getUsers } from '../api/remoteData';
+import { getAllInstructors } from '../api/remoteData';
 import InstructorProfileCard from '../components/InstructorProfileCard';
 
 const InstructorProfiles = () => {
   const [users, setUsers] = useState([]);
 
   const getAllUsers = () => {
-    getUsers().then(setUsers);
+    getAllInstructors().then(setUsers);
   };
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const InstructorProfiles = () => {
         </div>
       </div>
       <div className="d-flex flex-wrap gap-4 w-75 mx-auto">
-        {users.map((user) => user.isInstructor && <InstructorProfileCard key={user.firebaseKey} user={user} />)}
+        {users.map((user) => <InstructorProfileCard key={user.firebaseKey} user={user} />)}
       </div>
 
     </>

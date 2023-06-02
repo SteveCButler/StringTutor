@@ -74,6 +74,7 @@ const getUserByUID = (uid) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// GET Student
 const getStudent = (firebaseKey) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/users/${firebaseKey}.json`, {
     method: 'GET',
@@ -84,6 +85,21 @@ const getStudent = (firebaseKey) => new Promise((resolve, reject) => {
     .then((response) => response.json())
     .then((data) => {
       resolve(data);
+    })
+    .catch(reject);
+});
+
+// Get Students by Instructor
+const getStudentsByInstructor = (instructorId) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/users.json?orderBy="instructor"&equalTo="${instructorId}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      resolve(Object.values(data));
     })
     .catch(reject);
 });
@@ -187,4 +203,5 @@ export {
   createLesson,
   updateInstructor,
   getAllInstructors,
+  getStudentsByInstructor,
 };
