@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Button from 'react-bootstrap/Button';
 import { useAuth } from '../utils/context/authContext';
-import { getUserByUID } from '../api/remoteData';
+import { getUserByUID, deleteUser } from '../api/remoteData';
+import { signOut } from '../utils/auth';
 
 const Profile = () => {
   const [userObj, setUserObj] = useState([]);
@@ -11,6 +12,12 @@ const Profile = () => {
   useEffect(() => {
     getUserByUID(user.uid).then(setUserObj);
   }, [user.uid]);
+
+  const firebaseKey = userObj[0]?.firebaseKey;
+
+  const deleteAndSignOut = () => {
+    deleteUser(firebaseKey).then(signOut);
+  };
 
   return (
     <>
@@ -33,8 +40,16 @@ const Profile = () => {
             </>
           )}
 
-          <Button className="me-2 dark-button">Edit Profile</Button>
-          <Button className="me-2 dark-button">Delete Account</Button>
+          {/* DYNAMIC LINK TO EDIT THE MEMBER DETAILS  */}
+          <Link href={`/instructor/edit/${firebaseKey}`} passHref>
+            <Button className="me-2 dark-button">
+              Edit Profile
+            </Button>
+          </Link>
+          <Link href="/" passHref>
+            <Button className="me-2 dark-button" onClick={deleteAndSignOut}>Delete Account</Button>
+          </Link>
+
         </div>
       </div>
 

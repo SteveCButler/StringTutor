@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { useRouter } from 'next/router';
 import { createUser, updateUser } from '../../api/remoteData';
 import { useAuth } from '../../utils/context/authContext';
+import { signIn } from '../../utils/auth';
 
 const initialState = {
   name: '',
@@ -20,6 +21,10 @@ const FormComponent = ({ instructor, obj }) => {
   const [formInput, setFormInput] = useState(initialState);
   const { user } = useAuth();
   const router = useRouter();
+
+  if (!user) {
+    signIn();
+  }
 
   useEffect(() => {
     if (obj.firebaseKey) {
@@ -49,7 +54,7 @@ const FormComponent = ({ instructor, obj }) => {
         });
       }
     } else if (obj.firebaseKey) {
-      updateUser(formInput).then(() => router.push(`/student/${obj.firebaseKey}`));
+      updateUser(formInput).then(() => router.push('/profile'));
     } else {
       const payload = { ...formInput, uid: user.uid, isInstructor: false };
       createUser(payload).then(router.push('/profile'));
