@@ -31,6 +31,21 @@ const getInstructor = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// GET All Instructors
+const getAllInstructors = () => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/users.json?orderBy="isInstructor"&equalTo=true`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      resolve(Object.values(data));
+    })
+    .catch(reject);
+});
+
 // UPDATE Instructor
 const updateInstructor = (payload) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/users/${payload.firebaseKey}.json`, {
@@ -54,7 +69,6 @@ const getUserByUID = (uid) => new Promise((resolve, reject) => {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.warn('DATA', data);
       resolve(Object.values(data));
     })
     .catch(reject);
@@ -172,4 +186,5 @@ export {
   getUserByUID,
   createLesson,
   updateInstructor,
+  getAllInstructors,
 };

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useRouter } from 'next/router';
-import { createUser, updateUser } from '../../api/remoteData';
+import { createUser, updateUser, getAllInstructors } from '../../api/remoteData';
 import { useAuth } from '../../utils/context/authContext';
 import { signIn } from '../../utils/auth';
 
@@ -19,6 +19,7 @@ const initialState = {
 
 const FormComponent = ({ instructor, obj }) => {
   const [formInput, setFormInput] = useState(initialState);
+  const [allInstructors, setAllInstructors] = useState([]);
   const { user } = useAuth();
   const router = useRouter();
 
@@ -26,7 +27,14 @@ const FormComponent = ({ instructor, obj }) => {
     signIn();
   }
 
+  const getInstructors = () => {
+    getAllInstructors().then((data) => {
+      setAllInstructors(data);
+    });
+  };
+
   useEffect(() => {
+    getInstructors();
     if (obj.firebaseKey) {
       setFormInput(obj);
     }
@@ -115,11 +123,25 @@ const FormComponent = ({ instructor, obj }) => {
       ) : (
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Instructor</Form.Label>
-          <Form.Select aria-label="Default select example">
-            <option>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+          <Form.Select
+            aria-label="Author"
+            name="author_id"
+            onChange={handleChange}
+            className="mb-3"
+            value={formInput.author_id}
+            required
+          >
+            <option value="">Select an Author</option>
+            {
+              allInstructors.map((singleInstructor) => (
+                <option
+                  key={singleInstructor.firebaseKey}
+                  value={singleInstructor.firebaseKey}
+                >
+                  {singleInstructor.name}
+                </option>
+              ))
+            }
           </Form.Select>
         </Form.Group>
       )}
