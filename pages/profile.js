@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import { useAuth } from '../utils/context/authContext';
 import { getUserByUID, deleteUser } from '../api/remoteData';
 import { signOut } from '../utils/auth';
+import StudentList from '../components/StudentList';
 
 const Profile = () => {
   const [userObj, setUserObj] = useState([]);
@@ -25,7 +26,8 @@ const Profile = () => {
         <div className="w-50">
           <h1 className="text-white my-3 ">{userObj[0]?.name}</h1>
           <div className="">
-            <p>{userObj[0]?.about}</p>
+            <p>{userObj[0]?.instrument}</p>
+            {userObj[0]?.isInstructor && <StudentList instructorId={firebaseKey} />}
           </div>
         </div>
         <div className="mt-5 me-5 d-flex flex-column  gap-3 w-25 ">
