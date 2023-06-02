@@ -1,13 +1,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import PropTypes from 'prop-types';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import { signOut } from '../utils/auth';
 import logo from '../assets/StringTutors.png';
 
-export default function NavBarAuth({ handleShow }) {
+export default function NavBarAuth() {
   return (
     <Navbar collapseOnSelect expand="lg" className="nav-bg ps-5" style={{ height: '5em' }} variant="dark">
       <Link passHref href="/">
@@ -28,21 +27,15 @@ export default function NavBarAuth({ handleShow }) {
           <Link passHref href="/resources">
             <Nav.Link>Resources</Nav.Link>
           </Link>
-          <Button className="border-0 bg-transparent text-white-50" onClick={handleShow}>Join</Button>
-          <Link passHref href="/">
+          <Link passHref href="/profile">
             <Nav.Link className="me-5">Profile</Nav.Link>
           </Link>
-          <Button variant="secondary" onClick={signOut}>Sign Out</Button>
+          <Link passHref href="/">
+            <Button variant="secondary" onClick={signOut}>Sign Out</Button>
+          </Link>
         </Nav>
       </Navbar.Collapse>
 
     </Navbar>
   );
 }
-
-NavBarAuth.propTypes = {
-  handleShow: PropTypes.func,
-};
-NavBarAuth.defaultProps = {
-  handleShow: () => {},
-};

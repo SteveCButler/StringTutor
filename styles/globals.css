@@ -84,6 +84,15 @@ a {
   color: #0E3B43;
   background-color:#A3BBAD;
 }
+.light-button{
+  color:#0E3B43;
+  background-color: #A3BBAD;
+  border: 0;
+}
+.light-button:hover{
+  color: #A3BBAD;
+  background-color:#0E3B43;
+}
 
 .welcome-bg{
   background: url('../assets/heroCropped.jpg') center center no-repeat;
