@@ -1,7 +1,5 @@
 /* eslint-disable global-require */
-import React, {
-  useState, useEffect, useRef, useCallback,
-} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -41,12 +39,12 @@ export default function CreateLesson() {
     }));
   };
 
-  const handleSubmit = useCallback((e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const payload = { ...formInput, content: textBody };
+    console.warn('PAYLOAD: ', payload);
     createLesson(payload).then(() => router.push('/profile'));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [formInput, textBody]);
+  };
 
   return (
     <>
@@ -70,11 +68,26 @@ export default function CreateLesson() {
               autoFocus
             />
           </Form.Group>
+          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Label className="text-white fs-5 mt-3">Instrument</Form.Label>
+            <Form.Control
+              className="mb-4"
+              type="text"
+              value={formInput.instrument}
+              placeholder="Lesson Instrument (enter Theory if not instrument specific)"
+              name="instrument"
+              onChange={handleChange}
+              required
+              autoFocus
+            />
+          </Form.Group>
           {
           editorLoaded ? (
             <CKEditor
               className="mt-3 wrap-ckeditor"
               editor={ClassicEditor}
+              value={textBody}
+              name="content"
               onChange={(event, editor) => {
                 const data = editor.getData();
                 // console.warn({ event, editor, data });
@@ -91,7 +104,7 @@ export default function CreateLesson() {
       </div>
       <div>
         <h1>Content</h1>
-        <p>{JSON.stringify(textBody)}</p>
+        <p>{textBody}</p>
       </div>
     </>
   );
