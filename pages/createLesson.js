@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Head from 'next/head';
-import createLesson from '../api/remoteData';
+import { createLesson } from '../api/lessonData';
 
 const initialState = {
   assignedTo: '',

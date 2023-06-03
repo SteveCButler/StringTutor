@@ -15,6 +15,7 @@ const Profile = () => {
   }, [user.uid]);
 
   const firebaseKey = userObj[0]?.firebaseKey;
+  console.warn('FIREBASE KEY: ', firebaseKey);
 
   const deleteAndSignOut = () => {
     deleteUser(firebaseKey).then(signOut);
