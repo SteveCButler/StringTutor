@@ -65,7 +65,6 @@ const FormComponent = ({ instructor, obj }) => {
       updateUser(formInput).then(() => router.push('/profile'));
     } else {
       const payload = { ...formInput, uid: user.uid, isInstructor: false };
-      console.warn('PAYLOAD: ', payload);
       createUser(payload).then(router.push('/profile'));
     }
   };

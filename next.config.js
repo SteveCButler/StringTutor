@@ -6,6 +6,11 @@ module.exports = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'pegheadnation.com',
+        port: '',
+      },
+      {
+        protocol: 'https',
         hostname: 'www.pegheadnation.com',
         port: '',
       },

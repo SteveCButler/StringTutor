@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Link from 'next/link';
+import parse from 'html-react-parser';
 import Card from 'react-bootstrap/Card';
 
 function InstructorProfileCard({ user }) {
@@ -24,7 +25,7 @@ function InstructorProfileCard({ user }) {
         <div>
           <p className="fs-6">{user.name}</p>
           <p className="fs-3">{user.instrument}</p>
-          <p>{limitedAbout}...</p>
+          {parse(`${limitedAbout}`)}...
         </div>
       </Card.Body>
       <Card.Footer>
