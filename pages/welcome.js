@@ -3,7 +3,6 @@ import Button from 'react-bootstrap/Button';
 import Link from 'next/link';
 import logo from '../assets/StringTutors.png';
 import { signIn } from '../utils/auth';
-import FormComponent from '../components/forms/FormComponent';
 
 const Welcome = () => (
 
@@ -28,7 +27,7 @@ const Welcome = () => (
         <Button className="pillButtonRight pillButton w-50">Students</Button>
       </Link>
     </div>
-    <FormComponent />
+
   </div>
 
 );

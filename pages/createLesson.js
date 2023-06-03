@@ -54,6 +54,21 @@ export default function CreateLesson() {
           <title>Create Lesson</title>
         </Head>
         <h1 className="text-white">Create Lesson</h1>
+        {
+          editorLoaded ? (
+            <CKEditor
+              className="mt-3 wrap-ckeditor"
+              editor={ClassicEditor}
+              value={textBody}
+              onChange={(event, editor) => {
+                const data = editor.getData();
+                // console.warn({ event, editor, data });
+                setTextBody(data);
+              }}
+            />
+          )
+            : 'loading...'
+        }
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
             <Form.Label className="text-white fs-5 mt-3">Lesson Name</Form.Label>
@@ -61,7 +76,7 @@ export default function CreateLesson() {
               className="mb-4"
               type="text"
               value={formInput.name}
-              placeholder="enter lesson name"
+              placeholder="Give your lesson a name"
               name="name"
               onChange={handleChange}
               required
@@ -81,22 +96,17 @@ export default function CreateLesson() {
               autoFocus
             />
           </Form.Group>
-          {
-          editorLoaded ? (
-            <CKEditor
-              className="mt-3 wrap-ckeditor"
-              editor={ClassicEditor}
-              value={textBody}
+          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            {/* <Form.Label className="text-white fs-5 mt-3">Instrument</Form.Label> */}
+            <Form.Control
+              className="mb-4"
+              type="hidden"
+              value={formInput.content}
               name="content"
-              onChange={(event, editor) => {
-                const data = editor.getData();
-                // console.warn({ event, editor, data });
-                setTextBody(data);
-              }}
+              onChange={handleChange}
+              required
             />
-          )
-            : 'loading...'
-        }
+          </Form.Group>
           <Button variant="primary" type="submit">
             Submit
           </Button>
