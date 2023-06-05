@@ -48,26 +48,11 @@ export default function CreateLesson() {
   return (
     <>
 
-      <div className="w-75 mx-auto">
+      <div className="w-75 mx-auto mt-4">
         <Head>
           <title>Create Lesson</title>
         </Head>
         <h1 className="text-white">Create Lesson</h1>
-        {
-          editorLoaded ? (
-            <CKEditor
-              className="mt-3 wrap-ckeditor"
-              editor={ClassicEditor}
-              value={textBody}
-              onChange={(event, editor) => {
-                const data = editor.getData();
-                // console.warn({ event, editor, data });
-                setTextBody(data);
-              }}
-            />
-          )
-            : 'loading...'
-        }
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
             <Form.Label className="text-white fs-5 mt-3">Lesson Name</Form.Label>
@@ -96,17 +81,25 @@ export default function CreateLesson() {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            {/* <Form.Label className="text-white fs-5 mt-3">Instrument</Form.Label> */}
-            <Form.Control
-              className="mb-4"
-              type="hidden"
-              value={formInput.content}
-              name="content"
-              onChange={handleChange}
-              required
-            />
+            <Form.Label className="text-white fs-5 mt-3">Lesson Content</Form.Label>
+            {
+        editorLoaded ? (
+          <CKEditor
+            className="mt-3 wrap-ckeditor"
+            editor={ClassicEditor}
+            value={textBody}
+            onChange={(event, editor) => {
+              const data = editor.getData();
+              // console.warn({ event, editor, data });
+              setTextBody(data);
+            }}
+          />
+        )
+          : 'loading...'
+      }
           </Form.Group>
-          <Button variant="primary" type="submit">
+
+          <Button className="mt-5 dark-button" type="submit">
             Submit
           </Button>
         </Form>

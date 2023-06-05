@@ -160,7 +160,7 @@ const FormComponent = ({ instructor, obj }) => {
         />
       </Form.Group>
 
-      <Button variant="primary" type="submit">
+      <Button className="dark-button" type="submit">
         Submit
       </Button>
     </Form>
