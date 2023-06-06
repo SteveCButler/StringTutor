@@ -72,7 +72,7 @@ const FormComponent = ({ instructor, obj }) => {
   return (
     <Form className="w-50 mx-auto text-white" onSubmit={handleSubmit}>
       <div className="text-center my-4 text-white">
-        {instructor ? <h1>Instructor Signup</h1> : <h1>Student Sign Up</h1>}
+        {instructor ? <h1>Instructor Info</h1> : <h1>Student Info</h1>}
       </div>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Label>Name</Form.Label>

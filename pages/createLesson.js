@@ -42,22 +42,24 @@ export default function CreateLesson() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const payload = { ...formInput, content: textBody };
+    console.warn('PAYLOAD: ', payload);
     createLesson(payload).then(() => router.push('/profile'));
   };
 
   return (
     <>
 
-      <div className="w-75 mx-auto mt-4">
+      <div className="w-75 mx-auto">
         <Head>
           <title>Create Lesson</title>
         </Head>
-        <h1 className="text-white">Create Lesson</h1>
+        <h1 className="text-white mt-3">Create Lesson</h1>
+
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
             <Form.Label className="text-white fs-5 mt-3">Lesson Name</Form.Label>
             <Form.Control
-              className="mb-4"
+              className="mb-3"
               type="text"
               value={formInput.name}
               placeholder="Give your lesson a name"
@@ -68,7 +70,7 @@ export default function CreateLesson() {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Label className="text-white fs-5 mt-3">Instrument</Form.Label>
+            <Form.Label className="text-white fs-5 mt-2">Instrument</Form.Label>
             <Form.Control
               className="mb-4"
               type="text"
@@ -81,33 +83,37 @@ export default function CreateLesson() {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Label className="text-white fs-5 mt-3">Lesson Content</Form.Label>
+            {/* <Form.Label className="text-white fs-5 mt-3">Instrument</Form.Label> */}
+            <Form.Control
+              className="mb-4"
+              type="hidden"
+              value={formInput.content}
+              name="content"
+              onChange={handleChange}
+              required
+            />
             {
-        editorLoaded ? (
-          <CKEditor
-            className="mt-3 wrap-ckeditor"
-            editor={ClassicEditor}
-            value={textBody}
-            onChange={(event, editor) => {
-              const data = editor.getData();
-              // console.warn({ event, editor, data });
-              setTextBody(data);
-            }}
-          />
-        )
-          : 'loading...'
-      }
+              editorLoaded ? (
+                <CKEditor
+                  className="wrap-ckeditor ck-editor__editable"
+                  editor={ClassicEditor}
+                  value={textBody}
+                  onChange={(event, editor) => {
+                    const data = editor.getData();
+                    setTextBody(data);
+                  }}
+                />
+              )
+                : 'loading...'
+            }
           </Form.Group>
 
-          <Button className="mt-5 dark-button" type="submit">
+          <Button className="dark-button" type="submit">
             Submit
           </Button>
         </Form>
       </div>
-      <div>
-        <h1>Content</h1>
-        <p>{textBody}</p>
-      </div>
+
     </>
   );
 }

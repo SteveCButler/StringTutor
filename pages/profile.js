@@ -16,6 +16,7 @@ const Profile = () => {
   }, [user.uid]);
 
   const firebaseKey = userObj[0]?.firebaseKey;
+  console.warn('FBK: ', firebaseKey);
 
   const deleteAndSignOut = () => {
     deleteUser(firebaseKey).then(signOut);
@@ -50,11 +51,21 @@ const Profile = () => {
           )}
 
           {/* DYNAMIC LINK TO EDIT THE MEMBER DETAILS  */}
-          <Link href={`/instructor/edit/${firebaseKey}`} passHref>
-            <Button className="me-2 dark-button">
-              Edit Profile
-            </Button>
-          </Link>
+          {userObj[0]?.isInstructor
+            ? (
+              <Link href={`/instructor/edit/${firebaseKey}`} passHref>
+                <Button className="me-2 dark-button">
+                  Edit Profile
+                </Button>
+              </Link>
+            )
+            : (
+              <Link href={`/student/edit/${firebaseKey}`} passHref>
+                <Button className="me-2 dark-button">
+                  Edit Profile
+                </Button>
+              </Link>
+            )}
           <Link href="/" passHref>
             <Button className="me-2 dark-button" onClick={deleteAndSignOut}>Delete Account</Button>
           </Link>
