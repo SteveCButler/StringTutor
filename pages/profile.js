@@ -5,6 +5,7 @@ import { useAuth } from '../utils/context/authContext';
 import { getUserByUID, deleteUser } from '../api/remoteData';
 import { signOut } from '../utils/auth';
 import StudentList from '../components/StudentList';
+import StudentAssignments from '../components/StudentAssignments';
 
 const Profile = () => {
   const [userObj, setUserObj] = useState([]);
@@ -15,10 +16,17 @@ const Profile = () => {
   }, [user.uid]);
 
   const firebaseKey = userObj[0]?.firebaseKey;
+  console.warn('FBK: ', firebaseKey);
 
   const deleteAndSignOut = () => {
     deleteUser(firebaseKey).then(signOut);
   };
+  let displayComponent = null;
+  if (userObj[0]?.isInstructor) {
+    displayComponent = <StudentList instructorId={firebaseKey} />;
+  } else {
+    displayComponent = <StudentAssignments />;
+  }
 
   return (
     <>
@@ -27,7 +35,7 @@ const Profile = () => {
           <h1 className="text-white my-3 ">{userObj[0]?.name}</h1>
           <div className="">
             <p>{userObj[0]?.instrument}</p>
-            {userObj[0]?.isInstructor && <StudentList instructorId={firebaseKey} />}
+            {displayComponent}
           </div>
         </div>
         <div className="mt-5 me-5 d-flex flex-column  gap-3 w-25 ">
@@ -43,11 +51,21 @@ const Profile = () => {
           )}
 
           {/* DYNAMIC LINK TO EDIT THE MEMBER DETAILS  */}
-          <Link href={`/instructor/edit/${firebaseKey}`} passHref>
-            <Button className="me-2 dark-button">
-              Edit Profile
-            </Button>
-          </Link>
+          {userObj[0]?.isInstructor
+            ? (
+              <Link href={`/instructor/edit/${firebaseKey}`} passHref>
+                <Button className="me-2 dark-button">
+                  Edit Profile
+                </Button>
+              </Link>
+            )
+            : (
+              <Link href={`/student/edit/${firebaseKey}`} passHref>
+                <Button className="me-2 dark-button">
+                  Edit Profile
+                </Button>
+              </Link>
+            )}
           <Link href="/" passHref>
             <Button className="me-2 dark-button" onClick={deleteAndSignOut}>Delete Account</Button>
           </Link>

@@ -2,6 +2,7 @@ import { clientCredentials } from '../utils/client';
 
 const dbUrl = clientCredentials.databaseURL;
 
+// GET All Users (Instructors & Students)
 const getUsers = () => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/users.json`, {
     method: 'GET',
@@ -60,6 +61,7 @@ const updateInstructor = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// GET User by UID
 const getUserByUID = (uid) => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/users.json?orderBy="uid"&equalTo="${uid}"`, {
     method: 'GET',
@@ -69,7 +71,8 @@ const getUserByUID = (uid) => new Promise((resolve, reject) => {
   })
     .then((response) => response.json())
     .then((data) => {
-      resolve(Object.values(data));
+      const result = resolve(Object.values(data));
+      console.warn('RESULT: ', result);
     })
     .catch(reject);
 });
@@ -85,6 +88,21 @@ const getStudent = (firebaseKey) => new Promise((resolve, reject) => {
     .then((response) => response.json())
     .then((data) => {
       resolve(data);
+    })
+    .catch(reject);
+});
+
+// Get ALL Students
+const getAllStudents = () => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/users.json?orderBy="isInstructor"&equalTo=false`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      resolve(Object.values(data));
     })
     .catch(reject);
 });
@@ -154,43 +172,6 @@ const deleteUser = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getLesson = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/lessons/${firebaseKey}.json`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      resolve(data);
-    })
-    .catch(reject);
-});
-
-// Create Lesson
-const createLesson = (payload) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/lessons.json`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(payload),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      const setcode = { lessonId: data.name };
-      fetch(`${dbUrl}/lessons/${setcode.firebaseKey}.json`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(setcode),
-      }).then(resolve);
-    })
-    .catch(reject);
-});
-
 export {
   getUsers,
   getInstructor,
@@ -198,10 +179,9 @@ export {
   createUser,
   updateUser,
   deleteUser,
-  getLesson,
   getUserByUID,
-  createLesson,
   updateInstructor,
   getAllInstructors,
   getStudentsByInstructor,
+  getAllStudents,
 };

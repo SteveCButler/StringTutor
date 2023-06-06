@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import parse from 'html-react-parser';
-import { getLesson } from '../api/remoteData';
+import { getLesson } from '../api/lessonData';
 
 const LessonPage = () => {
   const [lesson, setLesson] = useState('');
@@ -9,7 +9,6 @@ const LessonPage = () => {
       console.warn('DATA: ', data.content);
       const lessonContent = parse(data.content);
       setLesson(lessonContent);
-      console.warn('LessonContent: ', lessonContent);
     });
   }, []);
   return (

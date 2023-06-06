@@ -120,3 +120,6 @@ li > a{
 li > a:hover{
   color: #0E3B43;
 }
+.ck-editor__editable_inline{
+  min-height: 350px !important;
+}

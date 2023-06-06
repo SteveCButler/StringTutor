@@ -1,6 +1,8 @@
+import AssignLessonForm from '../components/forms/AssignLessonForm';
+
 const assignLesson = () => (
   <>
-    <h1>Assign Lesson</h1>
+    <AssignLessonForm />
   </>
 );
 

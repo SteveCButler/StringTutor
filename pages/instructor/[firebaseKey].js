@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import parse from 'html-react-parser';
 import { getInstructor } from '../../api/remoteData';
 
 const InstructorFullProfile = () => {
@@ -13,7 +14,7 @@ const InstructorFullProfile = () => {
   }, [firebaseKey]);
 
   return (
-    <div className=" dark-green p-3 rounded-2 bg-white w-75 mt-4 mx-auto">
+    <div className=" dark-green p-3 rounded-2 bg-white w-50 mt-4 mx-auto">
       <div className="d-flex gap-5 mb-3 light-green-bg round-top-left round-top-right text-white">
         { instructor.image && <Image priority className="round-top-left" src={instructor.image} width="250" height="200" /> }
         <div>
@@ -23,7 +24,7 @@ const InstructorFullProfile = () => {
 
       </div>
       <p className="fs-5 mb-0">About</p>
-      <p className="dark-green p-3">{instructor.about}</p>
+      {parse(`${instructor.about}`)}
     </div>
   );
 };

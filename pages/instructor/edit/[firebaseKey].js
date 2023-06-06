@@ -16,7 +16,7 @@ export default function EditInstructor() {
 
   return (
     <>
-      <FormComponent obj={editInstructor} />
+      <FormComponent instructor obj={editInstructor} />
     </>
   );
 }

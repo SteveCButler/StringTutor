@@ -4,30 +4,29 @@ import muddy from '../assets/muddyWater_poster.jpg';
 import woody from '../assets/woodieGuthrie_poster.jpg';
 import folkFest from '../assets/folkFestival_poster.jpg';
 import dylan from '../assets/dylan_poster.jpg';
-import monroe from '../assets/billMonroe_WSM_add.jpg';
-import mitchell from '../assets/joniMitchell.jpg';
 
 export default function Resources() {
   return (
     <>
-      <div className="d-flex">
-        <div className="text-white m-5">
-          <h1>Resources</h1>
-          <ul className="mt-3">
+      <h1 className="text-white mt-3 ms-5">Resources</h1>
+
+      <div className="d-flex justify-content-center flex-wrap ">
+        <div className="mt-3 mb-3 me-5">
+          <h4 className="mt-4 ms-5 light-green-text mb-4">Recommended Listening</h4>
+          <ul>
             <li>
               <a href="https://www.si.edu/spotlight/american-folk-music" target="_blank" rel="noreferrer">Smithsonian - American Folk Music Folkways</a>
             </li>
           </ul>
-          <h4 className="mt-5">Recommended Listening</h4>
-          <div className="mt-3">
-            <ul className="mt-3">
-              <li>
-                <a href="https://folkways.si.edu/" target="_blank" rel="noreferrer">Smithsonian Folkways</a>
-              </li>
-            </ul>
-          </div>
-          <h4 className="mt-5">Tools</h4>
           <ul className="mt-3">
+            <li>
+              <a href="https://folkways.si.edu/" target="_blank" rel="noreferrer">Smithsonian Folkways</a>
+            </li>
+          </ul>
+        </div>
+        <div className="mt-3 mb-4 mx-5">
+          <h4 className="mt-4 ms-5 mb-4 light-green-text">Tools</h4>
+          <ul>
             <li>
               <a href="https://www.fender.com/online-guitar-tuner" target="_blank" rel="noreferrer">Online Tuner</a>
             </li>
@@ -37,14 +36,33 @@ export default function Resources() {
 
           </ul>
         </div>
-        <div className="mt-3 d-flex flex-wrap gap-4">
-          <Image src={muddy} width="350" height="350" />
-          <Image src={folkFest} width="350" height="350" />
-          <Image src={woody} width="350" height="350" />
-          <Image src={dylan} width="350" height="350" />
-          <Image src={mitchell} width="350" height="350" />
-          <Image src={monroe} width="350" height="350" />
+        <div className="mt-3 mb-4 mx-5">
+          <h4 className="mt-4 ms-5 mb-4 light-green-text">Sites</h4>
+          <ul>
+            <li>
+              <a href="https://www.mandolincafe.com/" target="_blank" rel="noreferrer">Mandolin Cafe</a>
+            </li>
+            <li>
+              <a href="https://www.fiddlehangout.com/" target="_blank" rel="noreferrer">Fiddle Hangout</a>
+            </li>
+            <li>
+              <a href="https://www.banjohangout.org/" target="_blank" rel="noreferrer">Banjo Hangout</a>
+            </li>
+            <li>
+              <a href="https://www.flatpickerhangout.com/" target="_blank" rel="noreferrer">Flatpicker Hangout</a>
+            </li>
+            <li>
+              <a href="https://pegheadnation.com/" target="_blank" rel="noreferrer">Peghead Nation</a>
+            </li>
+
+          </ul>
         </div>
+      </div>
+      <div className="mt-3 mx-auto d-flex flex-wrap justify-content-evenly gap-4">
+        <Image src={muddy} width="350" height="350" />
+        <Image src={folkFest} width="350" height="450" />
+        <Image src={woody} width="350" height="350" />
+        <Image src={dylan} width="350" height="350" />
       </div>
     </>
   );

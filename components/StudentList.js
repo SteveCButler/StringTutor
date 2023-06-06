@@ -11,7 +11,7 @@ const StudentList = ({ instructorId }) => {
     getStudentsByInstructor(instructorId).then((data) => {
       setStudents(data);
     });
-  }, []);
+  }, [instructorId]);
 
   return (
     <div>
@@ -26,7 +26,7 @@ const StudentList = ({ instructorId }) => {
           </thead>
           <tbody>
             {students.map((student) => (
-              <tr>
+              <tr key={student.firebaseKey}>
                 <td>{student.name}</td>
                 <td>{student.about}</td>
               </tr>
