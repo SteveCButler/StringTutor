@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Button from 'react-bootstrap/Button';
+import { v4 as uuidV4 } from 'uuid';
 import { useAuth } from '../utils/context/authContext';
 import { getUserByUID, deleteUser } from '../api/remoteData';
 import { signOut } from '../utils/auth';
@@ -16,7 +17,6 @@ const Profile = () => {
   }, [user.uid]);
 
   const firebaseKey = userObj[0]?.firebaseKey;
-  console.warn('FBK: ', firebaseKey);
 
   const deleteAndSignOut = () => {
     deleteUser(firebaseKey).then(signOut);
@@ -25,7 +25,7 @@ const Profile = () => {
   if (userObj[0]?.isInstructor) {
     displayComponent = <StudentList instructorId={firebaseKey} />;
   } else {
-    displayComponent = <StudentAssignments />;
+    displayComponent = <StudentAssignments key={uuidV4()} />;
   }
 
   return (
