@@ -18,7 +18,7 @@ function Home() {
             fontSize: '1rem',
             lineHeight: '2rem',
             textAlign: 'left',
-            backdropFilter: 'brightness(65%)',
+            backdropFilter: 'brightness(50%)',
           }}
         >
           <div>

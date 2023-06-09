@@ -1,9 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
-// import Button from 'react-bootstrap/Button';
-// import Link from 'next/link';
-// import parse from 'html-react-parser';
 import { getUserByUID } from '../api/remoteData';
 import { getStudentAssignments } from '../api/lessonData';
 import { useAuth } from '../utils/context/authContext';
@@ -26,17 +23,9 @@ const StudentAssignments = () => {
     });
   }, []);
 
-  // const handleLesson = useCallback((lessonId) => {
-  //   getLesson({ lessonId }).then((data) => {
-  //     console.warn('DATA: ', data.content);
-  //     const lessonContent = parse(`${data.content}`);
-  //     setLesson(lessonContent);
-  //   });
-  // }, [lesson]);
-
   return (
     <div>
-      <h3 className="mt-4">Assingments</h3>
+      <h3 className="mt-4">Assignments</h3>
       <div className="bg-light rounded-2 p-3">
         <Table striped>
           <thead>

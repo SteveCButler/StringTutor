@@ -32,13 +32,15 @@ const Profile = () => {
     <>
       <div className="d-flex justify-content-between text-white ms-5">
         <div className="w-50">
-          <h1 className="text-white my-3 ">{userObj[0]?.name}</h1>
           <div className="">
-            <p>{userObj[0]?.instrument}</p>
             {displayComponent}
           </div>
         </div>
-        <div className="mt-5 me-5 d-flex flex-column  gap-3 w-25 ">
+        <div className="mt-3 me-5 d-flex flex-column gap-3 w-25 ">
+          <div>
+            <h1 className="text-white my-3 ">{userObj[0]?.name}</h1>
+            <p>{userObj[0]?.instrument}</p>
+          </div>
           {userObj[0]?.isInstructor && (
             <>
               <Link passHref href="/createLesson">
@@ -53,23 +55,26 @@ const Profile = () => {
           {/* DYNAMIC LINK TO EDIT THE MEMBER DETAILS  */}
           {userObj[0]?.isInstructor
             ? (
-              <Link href={`/instructor/edit/${firebaseKey}`} passHref>
-                <Button className="me-2 dark-button">
-                  Edit Profile
-                </Button>
-              </Link>
+              <>
+                <Link href={`/instructor/edit/${firebaseKey}`} passHref>
+                  <Button className="me-2 dark-button">
+                    Edit Profile
+                  </Button>
+                </Link>
+              </>
             )
             : (
-              <Link href={`/student/edit/${firebaseKey}`} passHref>
-                <Button className="me-2 dark-button">
-                  Edit Profile
-                </Button>
-              </Link>
+              <>
+                <Link href={`/student/edit/${firebaseKey}`} passHref>
+                  <Button className="me-2 dark-button">
+                    Edit Profile
+                  </Button>
+                </Link>
+              </>
             )}
           <Link href="/" passHref>
             <Button className="me-2 dark-button" onClick={deleteAndSignOut}>Delete Account</Button>
           </Link>
-
         </div>
       </div>
 
