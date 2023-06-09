@@ -7,11 +7,9 @@ const LessonPage = () => {
   const [lesson, setLesson] = useState('');
   const router = useRouter();
   const { firebaseKey } = router.query;
-  console.warn(firebaseKey);
 
   useEffect(() => {
     getLesson(firebaseKey).then((data) => {
-      console.warn('DATA: ', data);
       const lessonContent = parse(`${data?.content}`);
       setLesson(lessonContent);
     });
@@ -19,8 +17,7 @@ const LessonPage = () => {
 
   return (
     <>
-      <div>lessonPage</div>
-      <div className="w-75 bg-white text-black mx-auto p-5">
+      <div className="w-75 bg-white text-black mt-5 mx-auto p-5">
         {lesson}
       </div>
     </>

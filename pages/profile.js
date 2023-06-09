@@ -7,6 +7,7 @@ import { getUserByUID, deleteUser } from '../api/remoteData';
 import { signOut } from '../utils/auth';
 import StudentList from '../components/StudentList';
 import StudentAssignments from '../components/StudentAssignments';
+import AssignmentTracker from '../components/AssignmentTracker';
 
 const Profile = () => {
   const [userObj, setUserObj] = useState([]);
@@ -14,26 +15,26 @@ const Profile = () => {
 
   useEffect(() => {
     getUserByUID(user.uid).then(setUserObj);
-  }, [user.uid]);
+  }, []);
 
   const firebaseKey = userObj[0]?.firebaseKey;
 
   const deleteAndSignOut = () => {
     deleteUser(firebaseKey).then(signOut);
   };
-  let displayComponent = null;
-  if (userObj[0]?.isInstructor) {
-    displayComponent = <StudentList instructorId={firebaseKey} />;
-  } else {
-    displayComponent = <StudentAssignments key={uuidV4()} />;
-  }
 
   return (
     <>
       <div className="d-flex justify-content-between text-white ms-5">
         <div className="w-50">
           <div className="">
-            {displayComponent}
+            {userObj[0]?.isInstructor ? (<><StudentList instructorId={firebaseKey} /> <AssignmentTracker instructorId={firebaseKey} /></>)
+              : (
+                <>
+                  {console.warn('Passing through due to isInstructor being late')}
+                  <StudentAssignments key={uuidV4()} />
+                </>
+              )}
           </div>
         </div>
         <div className="mt-3 me-5 d-flex flex-column gap-3 w-25 ">
