@@ -15,7 +15,7 @@ const Profile = () => {
 
   useEffect(() => {
     getUserByUID(user.uid).then(setUserObj);
-  }, []);
+  }, [user.uid]);
 
   const firebaseKey = userObj[0]?.firebaseKey;
 
