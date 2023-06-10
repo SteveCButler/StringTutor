@@ -16,7 +16,6 @@ const AssignLessonForm = () => {
   const [lessons, setLessons] = useState([]);
   const [students, setStudents] = useState([]);
   const [id, setId] = useState('');
-  // let id = '';
   const router = useRouter();
 
   const getLessons = async () => {
@@ -38,14 +37,12 @@ const AssignLessonForm = () => {
 
   const getId = async (lessonName) => {
     const response = await getAssignmentIdByName(lessonName);
-    console.warn(response);
     setId(response[0]?.lessonId);
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     const lessonName = (e.target.value);
-    console.warn(lessonName);
     getId(lessonName);
     setFormInput((prev) => ({
       ...prev, [name]: value,
@@ -59,7 +56,6 @@ const AssignLessonForm = () => {
     createAssignment(payload).then(router.push('/profile'));
   };
 
-  console.warn('ID: ', id);
   return (
     <>
       <Form className="w-50 mx-auto text-white" onSubmit={handleSubmit}>
