@@ -99,7 +99,6 @@ const getStudentAssignments = (studentFBK) => new Promise((resolve, reject) => {
 
 // GET Student Assignments
 const getAssignmentIdByName = (assignmentName) => new Promise((resolve, reject) => {
-  console.warn('LessonID: ', assignmentName);
   fetch(`${dbUrl}/lessons.json?orderBy="lessonName"&equalTo="${assignmentName}"`, {
     method: 'GET',
     headers: {
