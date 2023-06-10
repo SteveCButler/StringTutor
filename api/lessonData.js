@@ -96,10 +96,32 @@ const getStudentAssignments = (studentFBK) => new Promise((resolve, reject) => {
     })
     .catch(reject);
 });
+
+// GET Student Assignments
+const getAssignmentIdByName = (assignmentName) => new Promise((resolve, reject) => {
+  console.warn('LessonID: ', assignmentName);
+  fetch(`${dbUrl}/lessons.json?orderBy="lessonName"&equalTo="${assignmentName}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    })
+    .catch(reject);
+});
+
 export {
   getAllLessons,
   createLesson,
   getLesson,
   createAssignment,
   getStudentAssignments,
+  getAssignmentIdByName,
 };
