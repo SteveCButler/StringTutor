@@ -14,7 +14,7 @@ const CreateLessonForm = () => {
           data="<p>Hello from CKEditor 5!</p>"
           onChange={(event, editor) => {
             const data = editor.getData();
-            console.warn('CKEditor', { event, editor, data });
+            // ('CKEditor', { event, editor, data });
             setText(data);
           }}
         />

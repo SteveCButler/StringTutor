@@ -80,7 +80,6 @@ const createAssignment = (payload) => new Promise((resolve, reject) => {
 
 // GET Student Assignments
 const getStudentAssignments = (studentFBK) => new Promise((resolve, reject) => {
-  console.warn('FBK: ', studentFBK);
   fetch(`${dbUrl}/assignments.json?orderBy="student"&equalTo="${studentFBK}"`, {
     method: 'GET',
     headers: {
@@ -89,8 +88,11 @@ const getStudentAssignments = (studentFBK) => new Promise((resolve, reject) => {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.warn('DATA: ', data);
-      resolve(Object.values(data));
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
     })
     .catch(reject);
 });

@@ -4,29 +4,28 @@ import Table from 'react-bootstrap/Table';
 import { getUserByUID } from '../api/remoteData';
 import { getStudentAssignments } from '../api/lessonData';
 import { useAuth } from '../utils/context/authContext';
+import AssignmentComponent from './AssignmentComponent';
 
 const StudentAssignments = () => {
-  const [student, setStudent] = useState([]);
+  // const [lesson, setLesson] = useState('');
   const [assignments, setAssignments] = useState([]);
   const { user } = useAuth();
 
-  const getAssignments = async () => {
-    console.warn('studentFBK: ', student);
-    const result = await getStudentAssignments(student.firebaseKey);
+  const getAssignments = async (fbKey) => {
+    const result = await getStudentAssignments(fbKey);
     setAssignments(result);
   };
 
   useEffect(() => {
     getUserByUID(user.uid).then((data) => {
-      setStudent(data);
+      const fbKey = data[0]?.firebaseKey;
+      getAssignments(fbKey);
     });
-    getAssignments();
   }, []);
-  // console.warn(`Assignment: ${assignments}`);
 
   return (
     <div>
-      <h3 className="mt-4">Assingments</h3>
+      <h3 className="mt-4">Assignments</h3>
       <div className="bg-light rounded-2 p-3">
         <Table striped>
           <thead>
@@ -35,10 +34,10 @@ const StudentAssignments = () => {
             </tr>
           </thead>
           <tbody>
-            {assignments.map((assignment) => (
-              console.warn('ASSIGNMENT: ', assignment)
-            ))}
+            {
+              assignments.map((assignment) => <AssignmentComponent key={assignment.lessonId} assignment={assignment} />)
 
+            }
           </tbody>
         </Table>
       </div>

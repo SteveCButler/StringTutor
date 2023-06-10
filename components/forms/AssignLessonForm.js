@@ -9,6 +9,7 @@ import { getAllLessons, createAssignment } from '../../api/lessonData';
 const initialState = {
   student: '',
   lessonId: '',
+  lessonName: '',
 };
 
 const AssignLessonForm = () => {
@@ -35,11 +36,16 @@ const AssignLessonForm = () => {
     getStudents();
   }, []);
 
+  // REVISIT handleChage - need to have lessonId and lessonName
   const handleChange = (e) => {
+    let lessonName = '';
+    let lessonId = '';
     const { name, value } = e.target;
+    if (name === 'lessonId') {
+      [lessonName, lessonId] = value.split('-');
+    }
     setFormInput((prev) => ({
-      ...prev,
-      [name]: value,
+      ...prev, [name]: value, lessonName, lessonId,
     }));
   };
 
@@ -60,10 +66,10 @@ const AssignLessonForm = () => {
           <Form.Label>Lesson</Form.Label>
           <Form.Select
             aria-label="Lesson"
-            name="lessonName"
+            name="lessonId"
             onChange={handleChange}
             className="mb-3"
-            value={formInput.lessonName}
+            value={`${formInput.lessonName}-${formInput.lessonId}`} // REVISIT
             required
           >
             <option value="">Select Lesson</option>
@@ -71,7 +77,7 @@ const AssignLessonForm = () => {
               lessons.map((singleLesson) => (
                 <option
                   key={singleLesson.lessonId}
-                  value={singleLesson.lessonId}
+                  value={`${singleLesson.lessonName}-${singleLesson.lessonId}`} // REVISIT
                 >
                   {singleLesson.lessonName}
                 </option>

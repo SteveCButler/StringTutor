@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useRouter } from 'next/router';
-import { createUser, updateUser, getAllInstructors } from '../../api/remoteData';
+import {
+  createUser, updateUser, getAllInstructors, getUserByUID,
+} from '../../api/remoteData';
 import { useAuth } from '../../utils/context/authContext';
 import { signIn } from '../../utils/auth';
 
@@ -49,7 +51,19 @@ const FormComponent = ({ instructor, obj }) => {
   };
 
   const handleSubmit = (e) => {
+    let existingUser = false;
     e.preventDefault();
+    // CHECK TO SEE IF USER HAS ALREADY SIGNED UP
+    getUserByUID(user.uid).then((userExists) => {
+      if (userExists.length > 0) {
+        window.confirm('You are already signed up!');
+        router.push('/profile');
+        existingUser = true;
+      }
+    });
+    if (existingUser) {
+      console.warn('USER EXISTS');
+    }
     if (instructor) {
       if (obj.firebaseKey) {
         updateUser(formInput).then(() => router.push(`/instructor/${obj.firebaseKey}`));
@@ -170,7 +184,7 @@ const FormComponent = ({ instructor, obj }) => {
 export default FormComponent;
 
 FormComponent.propTypes = {
-  instructor: PropTypes.bool.isRequired,
+  instructor: PropTypes.bool,
   obj: PropTypes.shape({
     name: PropTypes.string,
     role: PropTypes.string,
@@ -180,4 +194,5 @@ FormComponent.propTypes = {
 };
 FormComponent.defaultProps = {
   obj: initialState,
+  instructor: false,
 };

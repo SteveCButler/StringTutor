@@ -71,8 +71,7 @@ const getUserByUID = (uid) => new Promise((resolve, reject) => {
   })
     .then((response) => response.json())
     .then((data) => {
-      const result = resolve(Object.values(data));
-      console.warn('RESULT: ', result);
+      resolve(Object.values(data));
     })
     .catch(reject);
 });
