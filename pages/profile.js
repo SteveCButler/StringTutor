@@ -1,7 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Button from 'react-bootstrap/Button';
-import { v4 as uuidV4 } from 'uuid';
 import { useAuth } from '../utils/context/authContext';
 import { getUserByUID, deleteUser } from '../api/remoteData';
 import { signOut } from '../utils/auth';
@@ -12,12 +12,31 @@ import AssignmentTracker from '../components/AssignmentTracker';
 const Profile = () => {
   const [userObj, setUserObj] = useState([]);
   const { user } = useAuth();
+  let verifyInstructor = false;
+
+  const getUser = async () => {
+    const response = await getUserByUID(user.uid);
+    setUserObj(response);
+  };
 
   useEffect(() => {
-    getUserByUID(user.uid).then(setUserObj);
-  }, [user.uid]);
+    getUser();
+  }, []);
 
   const firebaseKey = userObj[0]?.firebaseKey;
+  verifyInstructor = userObj[0]?.isInstructor;
+
+  let displayComponent = null;
+  if (verifyInstructor) {
+    displayComponent = (
+      <>
+        <StudentList instructorId={firebaseKey} />
+        <AssignmentTracker instructorId={firebaseKey} />
+      </>
+    );
+  } else {
+    displayComponent = <StudentAssignments />;
+  }
 
   const deleteAndSignOut = () => {
     deleteUser(firebaseKey).then(signOut);
@@ -28,13 +47,7 @@ const Profile = () => {
       <div className="d-flex justify-content-between text-white ms-5">
         <div className="w-50">
           <div className="">
-            {userObj[0]?.isInstructor ? (<><StudentList instructorId={firebaseKey} /> <AssignmentTracker instructorId={firebaseKey} /></>)
-              : (
-                <>
-                  {console.warn('Passing through due to isInstructor being late')}
-                  <StudentAssignments key={uuidV4()} />
-                </>
-              )}
+            {displayComponent}
           </div>
         </div>
         <div className="mt-3 me-5 d-flex flex-column gap-3 w-25 ">

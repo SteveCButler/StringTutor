@@ -7,10 +7,8 @@ import { getStudentAssignments } from '../api/lessonData';
 
 const AssignmentTracker = ({ instructorId }) => {
   const [assignment, setAssignment] = useState([]);
-  console.warn('TRACKER');
 
   useEffect(() => {
-    console.warn('InstructorID', instructorId);
     getStudentsByInstructor(instructorId).then((students) => students.map((student) => getStudentAssignments(student.firebaseKey).then(setAssignment)));
   }, []);
 
