@@ -4,7 +4,6 @@ import Button from 'react-bootstrap/Button';
 import { useRouter } from 'next/router';
 import { getAllStudents } from '../../api/remoteData';
 import { getAllLessons, createAssignment } from '../../api/lessonData';
-// import { useAuth } from '../../utils/context/authContext';
 
 const initialState = {
   student: '',
@@ -16,7 +15,7 @@ const AssignLessonForm = () => {
   const [formInput, setFormInput] = useState(initialState);
   const [lessons, setLessons] = useState([]);
   const [students, setStudents] = useState([]);
-  // const { user } = useAuth();
+  let id = '';
   const router = useRouter();
 
   const getLessons = async () => {
@@ -36,23 +35,17 @@ const AssignLessonForm = () => {
     getStudents();
   }, []);
 
-  // REVISIT handleChage - need to have lessonId and lessonName
   const handleChange = (e) => {
-    let lessonName = '';
-    let lessonId = '';
     const { name, value } = e.target;
-    if (name === 'lessonId') {
-      [lessonName, lessonId] = value.split('-');
-    }
     setFormInput((prev) => ({
-      ...prev, [name]: value, lessonName, lessonId,
+      ...prev, [name]: value,
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const payload = { ...formInput };
+    const payload = { ...formInput, lessonId: id };
     createAssignment(payload).then(router.push('/profile'));
   };
 
@@ -66,22 +59,26 @@ const AssignLessonForm = () => {
           <Form.Label>Lesson</Form.Label>
           <Form.Select
             aria-label="Lesson"
-            name="lessonId"
+            name="lessonName"
             onChange={handleChange}
             className="mb-3"
-            value={formInput.lessonName} // REVISIT
+            value={formInput.lessonName}
             required
           >
             <option value="">Select Lesson</option>
             {
-              lessons.map((singleLesson) => (
-                <option
-                  key={singleLesson.lessonId}
-                  value={singleLesson.lessonId} // REVISIT
-                >
-                  {singleLesson.lessonName}
-                </option>
-              ))
+              lessons.map((singleLesson) => {
+                id = singleLesson.lessonId;
+                console.warn('LessonId', id);
+                return (
+                  <option
+                    key={id}
+                    value={singleLesson.lessonName}
+                  >
+                    {singleLesson.lessonName}
+                  </option>
+                );
+              })
             }
           </Form.Select>
         </Form.Group>

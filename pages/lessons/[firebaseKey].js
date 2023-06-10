@@ -7,6 +7,7 @@ const LessonPage = () => {
   const [lesson, setLesson] = useState('');
   const router = useRouter();
   const { firebaseKey } = router.query;
+  console.warn('FBKEY: ', firebaseKey);
 
   useEffect(() => {
     getLesson(firebaseKey).then((data) => {
