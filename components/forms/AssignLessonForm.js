@@ -69,7 +69,7 @@ const AssignLessonForm = () => {
             name="lessonId"
             onChange={handleChange}
             className="mb-3"
-            value={`${formInput.lessonName}-${formInput.lessonId}`} // REVISIT
+            value={formInput.lessonName} // REVISIT
             required
           >
             <option value="">Select Lesson</option>
@@ -77,7 +77,7 @@ const AssignLessonForm = () => {
               lessons.map((singleLesson) => (
                 <option
                   key={singleLesson.lessonId}
-                  value={`${singleLesson.lessonName}-${singleLesson.lessonId}`} // REVISIT
+                  value={singleLesson.lessonId} // REVISIT
                 >
                   {singleLesson.lessonName}
                 </option>
