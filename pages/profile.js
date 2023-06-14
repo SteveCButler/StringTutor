@@ -1,30 +1,30 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Link from 'next/link';
 import Button from 'react-bootstrap/Button';
-import { useAuth } from '../utils/context/authContext';
-import { getUserByUID, deleteUser } from '../api/remoteData';
+import { deleteUser } from '../api/remoteData';
 import { signOut } from '../utils/auth';
 import StudentList from '../components/StudentList';
 import StudentAssignments from '../components/StudentAssignments';
 import AssignmentTracker from '../components/AssignmentTracker';
 
-const Profile = () => {
-  const [userObj, setUserObj] = useState([]);
-  const { user } = useAuth();
-  let verifyInstructor = false;
+const Profile = ({ userObj }) => {
+  // const [userObj, setUserObj] = useState([]);
+  // const { user } = useAuth();
+  // let verifyInstructor = false;
 
-  const getUser = async () => {
-    const response = await getUserByUID(user.uid);
-    setUserObj(response);
-  };
+  // const getUser = async () => {
+  //   const response = await getUserByUID(user.uid);
+  //   setUserObj(response);
+  // };
 
-  useEffect(() => {
-    getUser();
-  }, []);
+  // useEffect(() => {
+  //   getUser();
+  // }, []);
 
   const firebaseKey = userObj[0]?.firebaseKey;
-  verifyInstructor = userObj[0]?.isInstructor;
+  const verifyInstructor = userObj[0]?.isInstructor;
 
   let displayComponent = null;
   // if (verifyInstructor) {
@@ -109,3 +109,7 @@ const Profile = () => {
 };
 
 export default Profile;
+
+Profile.propTypes = {
+  userObj: PropTypes.shape().isRequired,
+};

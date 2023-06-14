@@ -80,14 +80,16 @@ a {
   background-color: #0E3B43;
   border: 0;
 }
-.dark-button:hover{
+.dark-button:hover,
+.dark-button:active{
   color: #0E3B43;
   background-color:#A3BBAD;
 }
 .dark-link{
   color: #0E3B43;
 }
-.dark-link:hover{
+.dark-link:hover,
+.dark-link:active{
   color:#357266;
   font-weight: bold;
 }
@@ -96,7 +98,8 @@ a {
   background-color: #A3BBAD;
   border: 0;
 }
-.light-button:hover{
+.light-button:hover,
+.light-button:active{
   color: #A3BBAD;
   background-color:#0E3B43;
 }

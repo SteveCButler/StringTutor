@@ -9,9 +9,6 @@ import { signIn } from '../utils/auth';
 // import { useAuth } from '../utils/context/authContext';
 
 function Home({ user }) {
-  // const { user } = useAuth();
-  console.warn('USER:  ', user);
-
   return (
     <>
       <div className="d-flex justify-content-start welcome-bg">

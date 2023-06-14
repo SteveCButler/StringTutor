@@ -36,7 +36,7 @@ const AssignmentTracker = ({ userObj }) => {
         ))
       ));
     }))));
-  }, [userObj]);
+  }, []);
 
   const removeAssignment = (assignmentId) => {
     deleteAssignment(assignmentId);
