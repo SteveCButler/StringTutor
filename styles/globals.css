@@ -84,6 +84,13 @@ a {
   color: #0E3B43;
   background-color:#A3BBAD;
 }
+.dark-link{
+  color: #0E3B43;
+}
+.dark-link:hover{
+  color:#357266;
+  font-weight: bold;
+}
 .light-button{
   color:#0E3B43;
   background-color: #A3BBAD;

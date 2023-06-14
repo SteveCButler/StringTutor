@@ -2,15 +2,47 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
 import { getStudentsByInstructor } from '../api/remoteData';
-import { getStudentAssignments } from '../api/lessonData';
+import { getStudentAssignments, deleteAssignment } from '../api/lessonData';
 
-const AssignmentTracker = ({ instructorId }) => {
-  const [assignment, setAssignment] = useState([]);
+const AssignmentTracker = ({ userObj }) => {
+  const [assignments, setAssignments] = useState([]);
+  const onUpdate = () => {
+    getStudentsByInstructor(userObj?.firebaseKey).then((data) => Promise.all(data.map((item) => getStudentAssignments(item.firebaseKey).then((response) => {
+      response.map((lesson) => (
+        setAssignments((current) => ([...current,
+          {
+            lessonName: lesson.lessonName,
+            studentId: lesson.studentId,
+            studentName: lesson.studentName,
+            assignmentId: lesson.assignmentId,
+          }]
+        ))
+      ));
+    }))));
+  };
 
   useEffect(() => {
-    getStudentsByInstructor(instructorId).then((students) => students.map((student) => getStudentAssignments(student.firebaseKey).then(setAssignment)));
-  }, []);
+    getStudentsByInstructor(userObj?.firebaseKey).then((data) => Promise.all(data.map((item) => getStudentAssignments(item.firebaseKey).then((response) => {
+      response.map((lesson) => (
+        setAssignments((current) => ([...current,
+          {
+            lessonName: lesson.lessonName,
+            studentId: lesson.studentId,
+            studentName: lesson.studentName,
+            assignmentId: lesson.assignmentId,
+          }]
+        ))
+      ));
+    }))));
+  }, [userObj]);
+
+  const removeAssignment = (assignmentId) => {
+    deleteAssignment(assignmentId);
+    setAssignments([]);
+    onUpdate();
+  };
 
   return (
     <>
@@ -19,19 +51,40 @@ const AssignmentTracker = ({ instructorId }) => {
         <Table striped>
           <thead>
             <tr>
-              <th>Name</th>
+              <th>Lesson Name</th>
             </tr>
           </thead>
           <tbody>
-            {assignment.map((lesson) => (
-              <tr key={lesson.firebaseKey}>
+            {assignments?.map((lesson) => (
+              <tr key={lesson.assignmentId}>
+                <td>{lesson.assignmentId}</td>
+                <td>{lesson.studentName}</td>
                 <td>{lesson.lessonName}</td>
+                <td>
+                  <Button className="bg-transparent dark-link border-0 fw-bold" onClick={() => removeAssignment(lesson.assignmentId)}>Remove</Button>
+                </td>
               </tr>
             ))}
 
           </tbody>
         </Table>
       </div>
+      {/* <div className="bg-light rounded-2 p-3">
+        <Table striped>
+          <thead>
+            <tr>
+              <th>Student Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {students.map((student) => (
+              <tr key={student.firebaseKey}>
+                <td>{student.name}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div> */}
     </>
   );
 };
@@ -39,5 +92,5 @@ const AssignmentTracker = ({ instructorId }) => {
 export default AssignmentTracker;
 
 AssignmentTracker.propTypes = {
-  instructorId: PropTypes.string.isRequired,
+  userObj: PropTypes.shape().isRequired,
 };

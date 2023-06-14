@@ -8,7 +8,7 @@ const AssignmentComponent = ({ assignment }) => (
     <tr>
       <td key={assignment.lessonId}>
         <Link passHref href={`/lessons/${assignment.lessonId}`}>
-          <Button className="bg-transparent dark-green border-0">
+          <Button className="bg-transparent dark-link border-0">
             {assignment.lessonName}
           </Button>
         </Link>

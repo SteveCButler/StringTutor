@@ -31,7 +31,7 @@ const Profile = () => {
     displayComponent = (
       <>
         <StudentList instructorId={firebaseKey} />
-        <AssignmentTracker instructorId={firebaseKey} />
+        <AssignmentTracker key={firebaseKey} userObj={userObj[0]} />
       </>
     );
   } else {
