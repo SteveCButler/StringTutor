@@ -27,15 +27,26 @@ const Profile = () => {
   verifyInstructor = userObj[0]?.isInstructor;
 
   let displayComponent = null;
-  if (verifyInstructor) {
+  // if (verifyInstructor) {
+  //   displayComponent = (
+  //     <>
+  //       <StudentList instructorId={firebaseKey} />
+  //       <AssignmentTracker key={firebaseKey} userObj={userObj[0]} />
+  //     </>
+  //   );
+  // } else {
+  //   displayComponent = <StudentAssignments />;
+  // }
+
+  if (!verifyInstructor) {
+    displayComponent = <StudentAssignments />;
+  } else {
     displayComponent = (
       <>
         <StudentList instructorId={firebaseKey} />
         <AssignmentTracker key={firebaseKey} userObj={userObj[0]} />
       </>
     );
-  } else {
-    displayComponent = <StudentAssignments />;
   }
 
   const deleteAndSignOut = () => {
