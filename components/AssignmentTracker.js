@@ -57,7 +57,6 @@ const AssignmentTracker = ({ userObj }) => {
           <tbody>
             {assignments?.map((lesson) => (
               <tr key={lesson.assignmentId}>
-                <td>{lesson.assignmentId}</td>
                 <td>{lesson.studentName}</td>
                 <td>{lesson.lessonName}</td>
                 <td>
