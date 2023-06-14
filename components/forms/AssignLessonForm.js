@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useRouter } from 'next/router';
-import { getAllStudents } from '../../api/remoteData';
+import { getAllStudents, getStudent } from '../../api/remoteData';
 import { getAllLessons, createAssignment, getAssignmentIdByName } from '../../api/lessonData';
 
 const initialState = {
-  student: '',
+  studentId: '',
+  studentName: '',
   lessonId: '',
   lessonName: '',
 };
@@ -15,6 +16,7 @@ const AssignLessonForm = () => {
   const [formInput, setFormInput] = useState(initialState);
   const [lessons, setLessons] = useState([]);
   const [students, setStudents] = useState([]);
+  const [studentName, setStudentName] = useState('');
   const [id, setId] = useState('');
   const router = useRouter();
 
@@ -30,6 +32,11 @@ const AssignLessonForm = () => {
     });
   };
 
+  const getStudentName = async (studentFBK) => {
+    const response = await getStudent(studentFBK);
+    setStudentName(response.name);
+  };
+
   useEffect(() => {
     getLessons();
     getStudents();
@@ -41,6 +48,10 @@ const AssignLessonForm = () => {
   };
 
   const handleChange = (e) => {
+    if (e.target.name === 'studentId') {
+      const studentFBK = (e.target.value);
+      getStudentName(studentFBK);
+    }
     const { name, value } = e.target;
     const lessonName = (e.target.value);
     getId(lessonName);
@@ -52,7 +63,7 @@ const AssignLessonForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const payload = { ...formInput, lessonId: id };
+    const payload = { ...formInput, lessonId: id, studentName };
     createAssignment(payload).then(router.push('/profile'));
   };
 
@@ -66,10 +77,10 @@ const AssignLessonForm = () => {
           <Form.Label>Student</Form.Label>
           <Form.Select
             aria-label="Student"
-            name="student"
+            name="studentId"
             onChange={handleChange}
             className="mb-3"
-            value={formInput.student}
+            value={formInput.studentId}
             required
           >
             <option value="">Select Student</option>

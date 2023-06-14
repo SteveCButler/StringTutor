@@ -7,7 +7,6 @@ import { useAuth } from '../utils/context/authContext';
 import AssignmentComponent from './AssignmentComponent';
 
 const StudentAssignments = () => {
-  // const [lesson, setLesson] = useState('');
   const [assignments, setAssignments] = useState([]);
   const { user } = useAuth();
 

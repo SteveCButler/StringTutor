@@ -80,7 +80,7 @@ const createAssignment = (payload) => new Promise((resolve, reject) => {
 
 // GET Student Assignments
 const getStudentAssignments = (studentFBK) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/assignments.json?orderBy="student"&equalTo="${studentFBK}"`, {
+  fetch(`${dbUrl}/assignments.json?orderBy="studentId"&equalTo="${studentFBK}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -116,6 +116,19 @@ const getAssignmentIdByName = (assignmentName) => new Promise((resolve, reject) 
     .catch(reject);
 });
 
+// DELETE Assignment
+const deleteAssignment = (assignmentId) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/assignments/${assignmentId}.json`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 export {
   getAllLessons,
   createLesson,
@@ -123,4 +136,5 @@ export {
   createAssignment,
   getStudentAssignments,
   getAssignmentIdByName,
+  deleteAssignment,
 };
