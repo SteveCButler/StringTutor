@@ -38,9 +38,9 @@ export default function NavBarAuth() {
           <Link passHref href="/profile">
             <Nav.Link className="me-5">Profile</Nav.Link>
           </Link>
-          <Link passHref href="/">
-            <Button variant="secondary" onClick={handleSignOut}>Sign Out</Button>
-          </Link>
+
+          <Button className="light-button" onClick={handleSignOut}>Sign Out</Button>
+
         </Nav>
       </Navbar.Collapse>
 
