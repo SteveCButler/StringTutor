@@ -15,7 +15,9 @@ const Profile = ({ userObj }) => {
 
   let displayComponent = null;
 
+
   if (verifyInstructor) {
+
     displayComponent = (
       <>
         <div className="w-75 mx-auto">
