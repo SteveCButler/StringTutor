@@ -8,6 +8,7 @@ import { signOut } from '../utils/auth';
 import StudentList from '../components/StudentList';
 import StudentAssignments from '../components/StudentAssignments';
 import AssignmentTracker from '../components/AssignmentTracker';
+import { deleteStudentAndAssignments } from '../api/lessonData';
 
 const Profile = ({ userObj }) => {
   const firebaseKey = userObj[0]?.firebaseKey;
@@ -34,6 +35,12 @@ const Profile = ({ userObj }) => {
 
   const deleteAndSignOut = () => {
     deleteUser(firebaseKey).then(signOut);
+  };
+
+  const deleteStudent = () => {
+    if (window.confirm('Delete your account?')) {
+      deleteStudentAndAssignments(firebaseKey).then(signOut);
+    }
   };
 
   return (
@@ -69,6 +76,9 @@ const Profile = ({ userObj }) => {
                     Edit Profile
                   </Button>
                 </Link>
+                <Link href="/" passHref>
+                  <Button className="me-2 dark-button" onClick={deleteAndSignOut}>Delete Account</Button>
+                </Link>
               </>
             )
             : (
@@ -78,11 +88,11 @@ const Profile = ({ userObj }) => {
                     Edit Profile
                   </Button>
                 </Link>
+                <Link href="/" passHref>
+                  <Button className="me-2 dark-button" onClick={deleteStudent}>Delete Account</Button>
+                </Link>
               </>
             )}
-          <Link href="/" passHref>
-            <Button className="me-2 dark-button" onClick={deleteAndSignOut}>Delete Account</Button>
-          </Link>
         </div>
       </div>
 
