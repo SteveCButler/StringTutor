@@ -17,8 +17,8 @@ const InstructorProfiles = () => {
 
   return (
     <>
-      <div className="d-flex justify-content-between">
-        <h1 className="text-white ms-5 my-3 ">InstructorProfiles</h1>
+      <div className="d-flex justify-content-between w-75 mx-auto">
+        <h1 className="text-white my-3 ">InstructorProfiles</h1>
         <div>
           <Link passHref href="/instructorSignupPage">
             <Button className="me-5 rounded-pill mt-3 dark-button">Instructor Sign Up</Button>

@@ -1,51 +1,36 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Link from 'next/link';
 import Button from 'react-bootstrap/Button';
-import { useAuth } from '../utils/context/authContext';
-import { getUserByUID, deleteUser } from '../api/remoteData';
+import { deleteUser } from '../api/remoteData';
 import { signOut } from '../utils/auth';
 import StudentList from '../components/StudentList';
 import StudentAssignments from '../components/StudentAssignments';
 import AssignmentTracker from '../components/AssignmentTracker';
 
-const Profile = () => {
-  const [userObj, setUserObj] = useState([]);
-  const { user } = useAuth();
-  let verifyInstructor = false;
-
-  const getUser = async () => {
-    const response = await getUserByUID(user.uid);
-    setUserObj(response);
-  };
-
-  useEffect(() => {
-    getUser();
-  }, []);
-
+const Profile = ({ userObj }) => {
   const firebaseKey = userObj[0]?.firebaseKey;
-  verifyInstructor = userObj[0]?.isInstructor;
+  const verifyInstructor = userObj[0]?.isInstructor;
 
   let displayComponent = null;
-  // if (verifyInstructor) {
-  //   displayComponent = (
-  //     <>
-  //       <StudentList instructorId={firebaseKey} />
-  //       <AssignmentTracker key={firebaseKey} userObj={userObj[0]} />
-  //     </>
-  //   );
-  // } else {
-  //   displayComponent = <StudentAssignments />;
-  // }
 
-  if (!verifyInstructor) {
-    displayComponent = <StudentAssignments />;
-  } else {
+
+  if (verifyInstructor) {
+
     displayComponent = (
       <>
-        <StudentList instructorId={firebaseKey} />
-        <AssignmentTracker key={firebaseKey} userObj={userObj[0]} />
+        <div className="w-75 mx-auto">
+          <StudentList instructorId={firebaseKey} />
+          <AssignmentTracker key={firebaseKey} userObj={userObj[0]} />
+        </div>
       </>
+    );
+  } else {
+    displayComponent = (
+      <div className="w-75 mx-auto">
+        <StudentAssignments />
+      </div>
     );
   }
 
@@ -109,3 +94,7 @@ const Profile = () => {
 };
 
 export default Profile;
+
+Profile.propTypes = {
+  userObj: PropTypes.shape().isRequired,
+};

@@ -23,9 +23,9 @@ const StudentAssignments = () => {
   }, []);
 
   return (
-    <div>
+    <>
       <h3 className="mt-4">Assignments</h3>
-      <div className="bg-light rounded-2 p-3">
+      <div className="bg-light mt-3 rounded-2 p-3">
         <Table striped>
           <thead>
             <tr>
@@ -40,7 +40,7 @@ const StudentAssignments = () => {
           </tbody>
         </Table>
       </div>
-    </div>
+    </>
   );
 };
 
