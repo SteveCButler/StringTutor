@@ -1,4 +1,5 @@
 import { clientCredentials } from '../utils/client';
+import { deleteUser } from './remoteData';
 
 const dbUrl = clientCredentials.databaseURL;
 
@@ -129,6 +130,17 @@ const deleteAssignment = (assignmentId) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const deleteStudentAndAssignments = (studentId) => new Promise((resolve, reject) => {
+  getStudentAssignments(studentId).then((assignmentArray) => {
+    console.warn('Assignment Array to Delete', assignmentArray);
+    const deleteStudentPromises = assignmentArray.map((assignment) => deleteAssignment(assignment.assignmentId));
+
+    Promise.all(deleteStudentPromises).then(() => {
+      deleteUser(studentId).then(resolve);
+    });
+  }).catch((error) => reject(error));
+});
+
 export {
   getAllLessons,
   createLesson,
@@ -137,4 +149,5 @@ export {
   getStudentAssignments,
   getAssignmentIdByName,
   deleteAssignment,
+  deleteStudentAndAssignments,
 };
