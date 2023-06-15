@@ -1,6 +1,6 @@
 # React/Next.js Template
 
-[See Live Demo of this Template](https://drt-next-js-template.netlify.app/)
+[See Live Demo of this Template](https://stringtutor.netlify.app/)
 
 ## Topics
 - [Get Started](#get-started)
