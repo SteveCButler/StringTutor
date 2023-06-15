@@ -10,42 +10,25 @@ import StudentAssignments from '../components/StudentAssignments';
 import AssignmentTracker from '../components/AssignmentTracker';
 
 const Profile = ({ userObj }) => {
-  // const [userObj, setUserObj] = useState([]);
-  // const { user } = useAuth();
-  // let verifyInstructor = false;
-
-  // const getUser = async () => {
-  //   const response = await getUserByUID(user.uid);
-  //   setUserObj(response);
-  // };
-
-  // useEffect(() => {
-  //   getUser();
-  // }, []);
-
   const firebaseKey = userObj[0]?.firebaseKey;
   const verifyInstructor = userObj[0]?.isInstructor;
 
   let displayComponent = null;
-  // if (verifyInstructor) {
-  //   displayComponent = (
-  //     <>
-  //       <StudentList instructorId={firebaseKey} />
-  //       <AssignmentTracker key={firebaseKey} userObj={userObj[0]} />
-  //     </>
-  //   );
-  // } else {
-  //   displayComponent = <StudentAssignments />;
-  // }
 
-  if (!verifyInstructor) {
-    displayComponent = <StudentAssignments />;
-  } else {
+  if (verifyInstructor) {
     displayComponent = (
       <>
-        <StudentList instructorId={firebaseKey} />
-        <AssignmentTracker key={firebaseKey} userObj={userObj[0]} />
+        <div className="w-75 mx-auto">
+          <StudentList instructorId={firebaseKey} />
+          <AssignmentTracker key={firebaseKey} userObj={userObj[0]} />
+        </div>
       </>
+    );
+  } else {
+    displayComponent = (
+      <div className="w-75 mx-auto">
+        <StudentAssignments />
+      </div>
     );
   }
 

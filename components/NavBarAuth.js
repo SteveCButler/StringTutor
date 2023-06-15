@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Navbar, Nav, Button } from 'react-bootstrap';
@@ -7,6 +8,13 @@ import { signOut } from '../utils/auth';
 import logo from '../assets/StringTutors.png';
 
 export default function NavBarAuth() {
+  const router = useRouter();
+
+  const handleSignOut = () => {
+    signOut();
+    router.push('/');
+  };
+
   return (
     <Navbar collapseOnSelect expand="lg" className="nav-bg ps-5" style={{ height: '5em' }} variant="dark">
       <Link passHref href="/">
@@ -31,7 +39,7 @@ export default function NavBarAuth() {
             <Nav.Link className="me-5">Profile</Nav.Link>
           </Link>
           <Link passHref href="/">
-            <Button variant="secondary" onClick={signOut}>Sign Out</Button>
+            <Button variant="secondary" onClick={handleSignOut}>Sign Out</Button>
           </Link>
         </Nav>
       </Navbar.Collapse>

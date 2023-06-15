@@ -46,7 +46,7 @@ const AssignmentTracker = ({ userObj }) => {
 
   return (
     <>
-      <h3 className="mt-5">AssignmentTracker</h3>
+      <h3 className="mt-5 mb-3">AssignmentTracker</h3>
       <div className="bg-light rounded-2 p-3">
         <Table striped>
           <thead>

@@ -19,13 +19,15 @@ const LessonPage = () => {
 
   return (
     <>
-      <div>
-        <Link passHref href="/profile">
-          <Button className="light-button mt-3 ms-5">Back to Lessons</Button>
-        </Link>
-      </div>
-      <div className="w-75 bg-white text-black mt-4 mx-auto p-5 rounded-2">
-        {lesson}
+      <div className="w-75 mx-auto">
+        <div>
+          <Link passHref href="/profile">
+            <Button className="light-button mt-3">Back to Lessons</Button>
+          </Link>
+        </div>
+        <div className=" bg-white text-black mt-4  p-5 rounded-2">
+          {lesson}
+        </div>
       </div>
     </>
   );

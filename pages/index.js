@@ -41,7 +41,7 @@ function Home({ user }) {
                 <p style={{ fontSize: '12px' }}>Instructor Signup located on top of the Instructor Profiles page.</p>
                 <div className="text-white d-flex pt-4">
                   <p className="pt-3 ps-4 fs-6">Already signed up?</p>
-                  <Button className="fs-5 bg-transparent border-0 dark-green fw-bold" onClick={signIn}>Sign In</Button>
+                  <Button className="fs-5 bg-transparent border-0 light-green-text fw-bold" onClick={signIn}>Sign In</Button>
                 </div>
               </div>
             </>
@@ -53,7 +53,7 @@ function Home({ user }) {
                   <p>Thank you for signing up!</p>
                   <p>Your Profile page is where everything happens.</p>
                   <Link passHref href="/profile">
-                    <Button className="dark-button">Profile</Button>
+                    <Button className="dark-button btn-lg">Profile</Button>
                   </Link>
                 </div>
               </div>
