@@ -4,7 +4,10 @@ const InstructorSignupPage = () => {
   const instructor = true;
 
   return (
-    <FormComponent show instructor={instructor} />
+    <>
+      <title>Instructor Sign Up</title>
+      <FormComponent show instructor={instructor} />
+    </>
   );
 };
 

@@ -45,6 +45,7 @@ const Profile = ({ userObj }) => {
 
   return (
     <>
+      <title>Profile</title>
       <div className="d-flex justify-content-between text-white ms-5">
         <div className="w-50">
           <div className="">

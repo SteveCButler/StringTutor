@@ -17,6 +17,7 @@ const InstructorProfiles = () => {
 
   return (
     <>
+      <title>Instructor Profiles</title>
       <div className="d-flex justify-content-between w-75 mx-auto">
         <h1 className="text-white my-3 ">InstructorProfiles</h1>
         <div>

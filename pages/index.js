@@ -11,6 +11,7 @@ import { signIn } from '../utils/auth';
 function Home({ user }) {
   return (
     <>
+      <title>Home</title>
       <div className="d-flex justify-content-start welcome-bg">
         <div
           className="d-flex flex-column text-white px-5 pt-3 w-100 bgText"
@@ -24,6 +25,7 @@ function Home({ user }) {
 
           {Object.keys(user).length === 0 ? (
             <>
+
               <div>
                 <Image src={logo} width="600" height="175" />
               </div>
@@ -33,7 +35,7 @@ function Home({ user }) {
                 width: '35rem',
               }}
               >
-                <p>At String Tutors our focus is on the education and preservation of American Folk music.  Offering instruction in guitar, mandolin, banjo, fiddle, and banjo.</p>
+                <p>At String Tutors our focus is on the education and preservation of American Folk music.  Offering instruction in guitar, mandolin, banjo, fiddle, and bass.</p>
                 <p> Check out our instructor profiles to see who might be a good fit for you, then click Sign Up to get started learning.</p>
                 <div className="pt-3">
                   <WelcomePillButton />
