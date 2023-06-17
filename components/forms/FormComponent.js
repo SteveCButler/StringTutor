@@ -4,10 +4,9 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useRouter } from 'next/router';
 import {
-  createUser, updateUser, getAllInstructors, getUserByUID,
+  createUser, updateUser, getAllInstructors,
 } from '../../api/remoteData';
 import { useAuth } from '../../utils/context/authContext';
-import { signIn } from '../../utils/auth';
 
 const initialState = {
   name: '',
@@ -24,10 +23,6 @@ const FormComponent = ({ instructor, obj }) => {
   const [allInstructors, setAllInstructors] = useState([]);
   const { user } = useAuth();
   const router = useRouter();
-
-  if (!user) {
-    signIn();
-  }
 
   const getInstructors = () => {
     getAllInstructors().then((data) => {
@@ -51,19 +46,7 @@ const FormComponent = ({ instructor, obj }) => {
   };
 
   const handleSubmit = (e) => {
-    let existingUser = false;
     e.preventDefault();
-    // CHECK TO SEE IF USER HAS ALREADY SIGNED UP
-    getUserByUID(user.uid).then((userExists) => {
-      if (userExists.length > 0) {
-        window.confirm('You are already signed up!');
-        router.push('/profile');
-        existingUser = true;
-      }
-    });
-    if (existingUser) {
-      console.warn('USER EXISTS');
-    }
     if (instructor) {
       if (obj.firebaseKey) {
         updateUser(formInput).then(() => router.push(`/instructor/${obj.firebaseKey}`));
@@ -84,100 +67,102 @@ const FormComponent = ({ instructor, obj }) => {
   };
 
   return (
-    <Form className="w-50 mx-auto text-white" onSubmit={handleSubmit}>
-      <div className="text-center my-4 text-white">
-        {instructor ? <h1>Instructor Info</h1> : <h1>Student Info</h1>}
-      </div>
-      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Label>Name</Form.Label>
-        <Form.Control
-          type="text"
-          value={formInput.name}
-          placeholder="Name"
-          name="name"
-          onChange={handleChange}
-          required
-          autoFocus
-        />
-      </Form.Group>
-      {instructor && (
-      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Label>Photo</Form.Label>
-        <Form.Control
-          type="text"
-          value={formInput.image}
-          placeholder="photo URL"
-          name="image"
-          onChange={handleChange}
-          required
-        />
-      </Form.Group>
-      ) }
-
-      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Label>Instrument</Form.Label>
-        <Form.Control
-          type="text"
-          value={formInput.instrument}
-          name="instrument"
-          onChange={handleChange}
-          required
-        />
-      </Form.Group>
-      {instructor ? (
+    <>
+      <Form className="w-50 mx-auto text-white" onSubmit={handleSubmit}>
+        <div className="text-center my-4 text-white">
+          {instructor ? <h1>Instructor Info</h1> : <h1>Student Info</h1>}
+        </div>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Years of Experience</Form.Label>
+          <Form.Label>Name</Form.Label>
           <Form.Control
             type="text"
-            value={formInput.yearsExperience}
-            name="yearsExperience"
+            value={formInput.name}
+            placeholder="Name"
+            name="name"
+            onChange={handleChange}
+            required
+            autoFocus
+          />
+        </Form.Group>
+        {instructor && (
+        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+          <Form.Label>Photo</Form.Label>
+          <Form.Control
+            type="text"
+            value={formInput.image}
+            placeholder="photo URL"
+            name="image"
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
+        ) }
+
+        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+          <Form.Label>Instrument</Form.Label>
+          <Form.Control
+            type="text"
+            value={formInput.instrument}
+            name="instrument"
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
+        {instructor ? (
+          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Label>Years of Experience</Form.Label>
+            <Form.Control
+              type="text"
+              value={formInput.yearsExperience}
+              name="yearsExperience"
+              onChange={handleChange}
+            />
+          </Form.Group>
+        ) : (
+          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Label>Instructor</Form.Label>
+            <Form.Select
+              aria-label="Instructor"
+              name="instructor"
+              onChange={handleChange}
+              className="mb-3"
+              value={formInput.instructor}
+              required
+            >
+              <option value="">Select an Instructor</option>
+              {
+                allInstructors.map((singleInstructor) => (
+                  <option
+                    key={singleInstructor.firebaseKey}
+                    value={singleInstructor.firebaseKey}
+                  >
+                    {`${singleInstructor.name} - ${singleInstructor.instrument}`}
+                  </option>
+                ))
+              }
+            </Form.Select>
+          </Form.Group>
+        )}
+
+        <Form.Group
+          className="mb-3"
+          controlId="exampleForm.ControlTextarea1"
+        >
+          <Form.Label>About</Form.Label>
+          <Form.Control
+            as="textarea"
+            rows={5}
+            value={formInput.about}
+            name="about"
             onChange={handleChange}
           />
         </Form.Group>
-      ) : (
-        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Instructor</Form.Label>
-          <Form.Select
-            aria-label="Instructor"
-            name="instructor"
-            onChange={handleChange}
-            className="mb-3"
-            value={formInput.instructor}
-            required
-          >
-            <option value="">Select an Instructor</option>
-            {
-              allInstructors.map((singleInstructor) => (
-                <option
-                  key={singleInstructor.firebaseKey}
-                  value={singleInstructor.firebaseKey}
-                >
-                  {`${singleInstructor.name} - ${singleInstructor.instrument}`}
-                </option>
-              ))
-            }
-          </Form.Select>
-        </Form.Group>
-      )}
 
-      <Form.Group
-        className="mb-3"
-        controlId="exampleForm.ControlTextarea1"
-      >
-        <Form.Label>About</Form.Label>
-        <Form.Control
-          as="textarea"
-          rows={5}
-          value={formInput.about}
-          name="about"
-          onChange={handleChange}
-        />
-      </Form.Group>
-
-      <Button className="dark-button" type="submit">
-        Submit
-      </Button>
-    </Form>
+        <Button className="dark-button" type="submit">
+          Submit
+        </Button>
+      </Form>
+    </>
   );
 };
 

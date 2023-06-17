@@ -105,5 +105,5 @@ const Profile = ({ userObj }) => {
 export default Profile;
 
 Profile.propTypes = {
-  userObj: PropTypes.shape().isRequired,
+  userObj: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };

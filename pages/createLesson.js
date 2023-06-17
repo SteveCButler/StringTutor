@@ -7,8 +7,6 @@ import Head from 'next/head';
 import { createLesson } from '../api/lessonData';
 
 const initialState = {
-  assignedTo: '',
-  assignmentId: '',
   instrument: '',
   content: '',
   lessonId: '',
@@ -60,9 +58,9 @@ export default function CreateLesson() {
             <Form.Control
               className="mb-3"
               type="text"
-              value={formInput.name}
+              value={formInput.lessonName}
               placeholder="Give your lesson a name"
-              name="name"
+              name="lessonName"
               onChange={handleChange}
               required
               autoFocus
@@ -82,15 +80,14 @@ export default function CreateLesson() {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            {/* <Form.Label className="text-white fs-5 mt-3">Instrument</Form.Label> */}
-            <Form.Control
+            {/* <Form.Control
               className="mb-4"
-              type="hidden"
+              type="text"
               value={formInput.content}
               name="content"
               onChange={handleChange}
               required
-            />
+            /> */}
             {
               editorLoaded ? (
                 <CKEditor
