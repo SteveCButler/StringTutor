@@ -8,6 +8,7 @@ import dylan from '../assets/dylan_poster.jpg';
 export default function Resources() {
   return (
     <>
+      <title>Resources</title>
       <div className="w-75 mx-auto mt-3 ">
         <h1 className="text-white mt-3 ms-5">Resources</h1>
 
@@ -18,10 +19,11 @@ export default function Resources() {
               <li>
                 <a href="https://www.si.edu/spotlight/american-folk-music" target="_blank" rel="noreferrer">Smithsonian - American Folk Music Folkways</a>
               </li>
-            </ul>
-            <ul className="mt-3">
               <li>
                 <a href="https://folkways.si.edu/" target="_blank" rel="noreferrer">Smithsonian Folkways</a>
+              </li>
+              <li>
+                <a href="https://www.wmot.org/">WMOT - Roots Radio</a>
               </li>
             </ul>
           </div>
@@ -59,11 +61,11 @@ export default function Resources() {
             </ul>
           </div>
         </div>
-        <div className="mt-3 mx-auto d-flex flex-wrap justify-content-evenly gap-4">
-          <Image src={muddy} width="300" height="300" />
-          <Image src={folkFest} width="300" height="300" />
-          <Image src={woody} width="300" height="300" />
-          <Image src={dylan} width="300" height="300" />
+        <div className="mt-3 d-flex gap-3 justify-content-between">
+          <Image src={muddy} width="275" height="275" />
+          <Image src={folkFest} width="275" height="275" />
+          <Image src={woody} width="275" height="275" />
+          <Image src={dylan} width="275" height="275" />
         </div>
       </div>
     </>

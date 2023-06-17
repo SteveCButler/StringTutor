@@ -132,7 +132,6 @@ const deleteAssignment = (assignmentId) => new Promise((resolve, reject) => {
 
 const deleteStudentAndAssignments = (studentId) => new Promise((resolve, reject) => {
   getStudentAssignments(studentId).then((assignmentArray) => {
-    console.warn('Assignment Array to Delete', assignmentArray);
     const deleteStudentPromises = assignmentArray.map((assignment) => deleteAssignment(assignment.assignmentId));
 
     Promise.all(deleteStudentPromises).then(() => {

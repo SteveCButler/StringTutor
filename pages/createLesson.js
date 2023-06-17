@@ -42,7 +42,6 @@ export default function CreateLesson() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const payload = { ...formInput, content: textBody };
-    console.warn('PAYLOAD: ', payload);
     createLesson(payload).then(() => router.push('/profile'));
   };
 
