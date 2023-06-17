@@ -12,7 +12,7 @@ export default function NavBarAuth() {
 
   const handleSignOut = () => {
     router.push('/');
-    signOut();
+    setTimeout(() => { signOut(); }, 100);
   };
 
   return (
