@@ -61,7 +61,7 @@ export default function Resources() {
             </ul>
           </div>
         </div>
-        <div className="mt-3 d-flex gap-3 justify-content-between">
+        <div className="mt-5 d-flex gap-3 justify-content-between">
           <Image src={muddy} width="275" height="275" />
           <Image src={folkFest} width="275" height="275" />
           <Image src={woody} width="275" height="275" />
