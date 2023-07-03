@@ -3,8 +3,9 @@
 [See Live Demo of the site.](https://stringtutor.netlify.app/)
 
 ## Overview of the project
-Youtube allows you to view and play videos added by different users. Users are able to add, edit, and delete videos on the app.
-Also, users can create their own playlist and add any video that is on the app to it. 
+String Tutors is an app designed for the Education and Preservation of American Folk music.
+The focus is an application where instructors (tutors/mentors) can teach students to play traditional American folk music on stringed instruments, such as mandolin, guitar, bass, fiddle, and banjo.  American folk includes blues, bluegrass, old time, Appalachian folk, and others early American tunes that came over with the settlers (Irish/English reels, hornpipes, jigs) played on these instruments.
+
 
 ## Screenshots
 ### Home Screen
