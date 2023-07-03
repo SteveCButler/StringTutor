@@ -16,34 +16,37 @@ export default function NavBarAuth() {
   };
 
   return (
-    <Navbar collapseOnSelect expand="lg" className="nav-bg ps-5" style={{ height: '5em' }} variant="dark">
-      <Link passHref href="/">
-        <Navbar.Brand>
-          <Image src={logo} width="150" height="50" />
-        </Navbar.Brand>
-      </Link>
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="ms-auto me-5 ">
-          {/* CLOSE NAVBAR ON LINK SELECTION: https://stackoverflow.com/questions/72813635/collapse-on-select-react-bootstrap-navbar-with-nextjs-not-working */}
-          <Link passHref href="/">
-            <Nav.Link>Home</Nav.Link>
-          </Link>
-          <Link passHref href="/instructorProfiles">
-            <Nav.Link>Instructors</Nav.Link>
-          </Link>
-          <Link passHref href="/resources">
-            <Nav.Link>Resources</Nav.Link>
-          </Link>
-          <Link passHref href="/profile">
-            <Nav.Link className="me-5">Profile</Nav.Link>
-          </Link>
+    <Navbar collapseOnSelect expand="lg" className="nav-bg ps-5" id="main-nav" style={{ height: '5em' }} variant="dark">
+      <div id="nav-image">
+        <Link passHref href="/">
+          <Navbar.Brand id="nav-brand">
+            <Image src={logo} width="150" height="50" />
+          </Navbar.Brand>
+        </Link>
+      </div>
+      <div id="nav-links">
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="ms-auto me-5 ">
+            {/* CLOSE NAVBAR ON LINK SELECTION: https://stackoverflow.com/questions/72813635/collapse-on-select-react-bootstrap-navbar-with-nextjs-not-working */}
+            <Link passHref href="/">
+              <Nav.Link>Home</Nav.Link>
+            </Link>
+            <Link passHref href="/instructorProfiles">
+              <Nav.Link>Instructors</Nav.Link>
+            </Link>
+            <Link passHref href="/resources">
+              <Nav.Link>Resources</Nav.Link>
+            </Link>
+            <Link passHref href="/profile">
+              <Nav.Link className="me-5">Profile</Nav.Link>
+            </Link>
 
-          <Button className="light-button" onClick={handleSignOut}>Sign Out</Button>
+            <Button className="light-button" onClick={handleSignOut}>Sign Out</Button>
 
-        </Nav>
-      </Navbar.Collapse>
-
+          </Nav>
+        </Navbar.Collapse>
+      </div>
     </Navbar>
   );
 }

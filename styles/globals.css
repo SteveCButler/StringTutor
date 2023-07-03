@@ -133,3 +133,22 @@ li > a:hover{
 .ck-editor__editable_inline{
   min-height: 350px !important;
 }
+#nav-image{
+  width: 60%;
+  padding-left: 2.25rem;
+  padding-top: .5rem;
+}
+#nav-links{
+  margin: 0 2.5rem 0 auto;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 995px) {
+ #main-nav{
+  padding: 0 1,5rem;
+ }
+ 
+#nav-brand{
+  display: none;
+}
+}
