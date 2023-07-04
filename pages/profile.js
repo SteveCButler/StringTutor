@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import Button from 'react-bootstrap/Button';
@@ -13,6 +14,7 @@ import { deleteStudentAndAssignments } from '../api/lessonData';
 const Profile = ({ userObj }) => {
   const firebaseKey = userObj[0]?.firebaseKey;
   const verifyInstructor = userObj[0]?.isInstructor;
+  const router = useRouter();
 
   let displayComponent = null;
 
@@ -41,6 +43,11 @@ const Profile = ({ userObj }) => {
     if (window.confirm('Delete your account?')) {
       deleteStudentAndAssignments(firebaseKey).then(signOut);
     }
+  };
+
+  const handleSignOut = () => {
+    router.push('/');
+    setTimeout(() => { signOut(); }, 200);
   };
 
   return (
@@ -78,7 +85,7 @@ const Profile = ({ userObj }) => {
                   </Button>
                 </Link>
                 <Link href="/" passHref>
-                  <Button className="me-2 dark-button" onClick={deleteAndSignOut}>Delete Account</Button>
+                  <Button className="me-2 mt-5 dark-button" onClick={deleteAndSignOut}>Delete Account</Button>
                 </Link>
               </>
             )
@@ -90,11 +97,13 @@ const Profile = ({ userObj }) => {
                   </Button>
                 </Link>
                 <Link href="/" passHref>
-                  <Button className="me-2 dark-button" onClick={deleteStudent}>Delete Account</Button>
+                  <Button className="me-2 mt-5 dark-button" onClick={deleteStudent}>Delete Account</Button>
                 </Link>
               </>
             )}
+          <Button className="dark-button" onClick={handleSignOut}>Sign Out</Button>
         </div>
+
       </div>
 
     </>

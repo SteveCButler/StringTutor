@@ -32,7 +32,7 @@ function Home({ user }) {
 
               <h1 className="mb-3 display-5">Welcome to String Tutors</h1>
               <div style={{
-                width: '35rem',
+                maxWidth: '35rem',
               }}
               >
                 <p>At String Tutors our focus is on the education and preservation of American Folk music.  Offering instruction in guitar, mandolin, banjo, fiddle, and bass.</p>
