@@ -144,9 +144,15 @@ li > a:hover{
 }
 
 @media screen and (max-width: 995px) {
- #main-nav{
-  padding: 0 1,5rem;
- }
+  #responsive-navbar-nav{
+    background-color: #608d84;
+    border-radius: 5px;
+    padding-left: 10px;
+    z-index: 0;
+  }
+ #nav-links{
+  margin: .5rem .5rem .5rem 0;
+   }
  
 #nav-brand{
   display: none;
