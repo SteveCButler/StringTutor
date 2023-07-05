@@ -29,6 +29,7 @@ const InstructorFullProfile = () => {
           <div>
             <h1 className="mt-3">{instructor.name}</h1>
             <p className="fs-3">{instructor.instrument}</p>
+            <p>Years of Experience: {instructor.yearsExperience}</p>
           </div>
 
         </div>
