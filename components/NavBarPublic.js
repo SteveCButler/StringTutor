@@ -32,7 +32,7 @@ export default function NavBarPublic() {
               <Nav.Link>Resources</Nav.Link>
             </Link>
             <Link passHref href="/studentSignupPage">
-              <Nav.Link>Join</Nav.Link>
+              <Nav.Link>SignUp</Nav.Link>
             </Link>
             {/* <Link passHref href="/">
               <Nav.Link className="me-5" onClick={signIn}>Sign In</Nav.Link>
