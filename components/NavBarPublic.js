@@ -3,7 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Navbar, Nav } from 'react-bootstrap';
-import { signIn } from '../utils/auth';
+// import { signIn } from '../utils/auth';
 import logo from '../assets/StringTutors.png';
 
 export default function NavBarPublic() {
@@ -34,9 +34,9 @@ export default function NavBarPublic() {
             <Link passHref href="/studentSignupPage">
               <Nav.Link>Join</Nav.Link>
             </Link>
-            <Link passHref href="/">
+            {/* <Link passHref href="/">
               <Nav.Link className="me-5" onClick={signIn}>Sign In</Nav.Link>
-            </Link>
+            </Link> */}
           </Nav>
         </Navbar.Collapse>
       </div>

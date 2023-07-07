@@ -59,7 +59,7 @@ const Profile = ({ userObj }) => {
             {displayComponent}
           </div>
         </div>
-        <div className="mt-3 me-5 d-flex flex-column gap-3 w-25 ">
+        <div className="mt-3 me-5 d-flex flex-column gap-3 w-25">
           <div>
             <h1 className="text-white my-3 ">{userObj[0]?.name}</h1>
             <p>{userObj[0]?.instrument}</p>
@@ -84,8 +84,9 @@ const Profile = ({ userObj }) => {
                     Edit Profile
                   </Button>
                 </Link>
+                <Button className="dark-button mt-3 mb-5" onClick={handleSignOut}>Sign Out</Button>
                 <Link href="/" passHref>
-                  <Button className="me-2 mt-5 dark-button" onClick={deleteAndSignOut}>Delete Account</Button>
+                  <Button className="me-2 mt-5 dark-button deleteBtn" onClick={deleteAndSignOut}>Delete Account</Button>
                 </Link>
               </>
             )
@@ -96,12 +97,13 @@ const Profile = ({ userObj }) => {
                     Edit Profile
                   </Button>
                 </Link>
+                <Button className="dark-button mt-3 mb-5" onClick={handleSignOut}>Sign Out</Button>
                 <Link href="/" passHref>
-                  <Button className="me-2 mt-5 dark-button" onClick={deleteStudent}>Delete Account</Button>
+                  <Button className="me-2 mt-5 dark-button deleteBtn" onClick={deleteStudent}>Delete Account</Button>
                 </Link>
               </>
             )}
-          <Button className="dark-button" onClick={handleSignOut}>Sign Out</Button>
+
         </div>
 
       </div>
