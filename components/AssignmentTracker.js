@@ -51,6 +51,7 @@ const AssignmentTracker = ({ userObj }) => {
         <Table striped>
           <thead>
             <tr>
+              <th>Student Name</th>
               <th>Lesson Name</th>
             </tr>
           </thead>
