@@ -13,7 +13,7 @@ const WelcomePillButton = () => (
     <Link passHref href="/studentSignupPage">
       <Button
         className="pillButtonRight pillButton"
-      >Student Sign Up
+      >Student SignUp
       </Button>
     </Link>
   </>
